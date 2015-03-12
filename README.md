@@ -13,9 +13,9 @@ Tehtävänä on laatia www-sivulla toimiva drinkinhakulomake. Drinkkireseptit ku
 
 Järjestelmään kirjaudutaan sisään. Samalla hakusanalla voi saada useita eri tuloksia tai samaan juomaan voidaan viitata usealla hakusanalla, koska juomasekoitukset voivat kulkea eri nimillä eri paikoissa.
 
-Tavallinen kyättäjä voi hakea drinkkireseptejä kannasta ja ehdottaa uusien lisäämistä kantaan.
+Tavallinen käyttäjä voi hakea drinkkireseptejä kannasta ja ehdottaa uusien lisäämistä kantaan.
 
-Järjestelmän ylläpitäjä voi list järjestelmän reseptejä joko kokonaan itse tai ehdotettuja hyvksymällä. Lisääminen voi tapahtua esimerkiksi syöttämällä tiedot lomakkeeseen tai lukemalla resepti (tai useita reseptejä) esimerkiksi tekstitiedostosta. Järjestelmän ylläpitäjä voi antaa myös tavallisille käyttäjille ylläpito-oikeudet (ehkä vain reseptin lisäysoikeuden?).
+Järjestelmän ylläpitäjä voi listata järjestelmän reseptejä joko kokonaan itse tai ehdotettuja hyvksymällä. Lisääminen voi tapahtua esimerkiksi syöttämällä tiedot lomakkeeseen tai lukemalla resepti (tai useita reseptejä) esimerkiksi tekstitiedostosta. Järjestelmän ylläpitäjä voi antaa myös tavallisille käyttäjille ylläpito-oikeudet (ehkä vain reseptin lisäysoikeuden?).
 
 Toimintoja:
 
