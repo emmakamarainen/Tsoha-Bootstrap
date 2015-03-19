@@ -2,7 +2,11 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](https://www.cs.helsinki.fi)
+* [Linkki sovellukseni etusivulle](http://kaem.users.cs.helsinki.fi/Drinkkiarkisto/etusivu)
+* [Linkki sovellukseni esittelysivulle](http://kaem.users.cs.helsinki.fi/Drinkkiarkisto/esittely)
+* [Linkki sovellukseni muokkaussivulle](http://kaem.users.cs.helsinki.fi/Drinkkiarkisto/muokkaus)
+* [Linkki sovellukseni listaussivulle](http://kaem.users.cs.helsinki.fi/Drinkkiarkisto/listaus)
+* [Linkki sovellukseni kirjautumissivulle](http://kaem.users.cs.helsinki.fi/Drinkkiarkisto/login)
 * [Linkki dokumentaatiooni](https://github.com/emmakamarainen/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.pdf)
 
 ## Työn aihe
