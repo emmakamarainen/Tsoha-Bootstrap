@@ -3,10 +3,9 @@
 \usepackage[T1]{fontenc}
 \usepackage[finnish]{babel}
 \usepackage{geometry}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{amssymb}
 \usepackage{graphicx}
+
+
 \begin{document}
 
 \section*{Tietokantasovellus, harjoitustyö}
@@ -16,7 +15,7 @@ Harjoitustyön aiheena drinkkiarkisto. Tarkoituksena on luoda drinkkireseptien h
 
 Lomakkeella on ylläpitäjä tai ylläpitäjiä sekä tavallisia käyttäjiä. Tavallinen käyttäjä voi ehdottaa reseptin lisäystä tietokantaan. Ylläpitäjä voi hyväksyä ehdotuksen, ja lisätä reseptin joko tiedostosta tai lomakkeella. Ylläpitäjä voi myös antaa ylläpito-oikeudet tavalliselle käyttäjälle. 
 
-Tietokantana on PostgreSQL. Harjoitustyö toteutetaan laitoksen user--palvelimella PHP-kielellä.\\*
+Tietokantana on PostgreSQL. Harjoitustyö toteutetaan laitoksen user--palvelimella PHP-kielellä. 
 
 %Johdantoon kirjoitetaan lyhyt, ytimekäs kuvaus siitä, mikä on työn aihe, mitä työllä kuuluisi pystyä tekemään ja mitä tekniikoita siinä käytetään.
 %
@@ -32,13 +31,15 @@ Tietokantana on PostgreSQL. Harjoitustyö toteutetaan laitoksen user--palvelimel
 %Jos edellytetään jotain sovelluskehystä tulisi sekin mainita.
 %Täytyykö käyttäjän selaimen tukea jotain tiettyä ohjelmointikieltä (esim. javascript?).
 %Edellyttääkö ohjelmisto jonkun tietyn tietokannan käyttöä vai voiko sitä vaihtaa helposti. Useimmat työt toimivat vain yhdellä kannalla.
-
-
 \section{Käyttäjistä}
 
 \subsection{Käyttötapauskaavio}
-\includegraphics[scale=0.4]{kayttotapaukset.pdf}.
-\\*
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4]{kayttotapaukset.pdf}
+	\caption{Käyttötapauskaavio}
+\end{figure}
+	
 \subsection{Käyttäjäryhmät}
 
 \begin{flushleft}Ylläpitäjä\end{flushleft}
@@ -52,29 +53,99 @@ Tavallinen käyttäjä voi olla kuka tahansa sivulle kirjautunut henkilö.
 \subsection{Käyttötapaukset}
 
 \begin{flushleft}\textbf{Ylläpitäjä\(\colon\)} \end{flushleft}
+\begin{itemize}
+	\item Reseptien haku\(\colon\) käyttäjä voi hakea tietokannasta reseptejä hakusanalla. Yksi hakusana voi tuottaa monta tulosta.
+	\item Reseptien listaus\(\colon\) käyttäjä voi listata reseptit ainesosan mukaan tai aakkos-- tai juomalajijärjestykseen.
+	\item Ylläpito-oikeuden antaminen tavalliselle käyttäjälle\(\colon\) käyttäjä voi tehdä tavallisesta käyttäjästä ylläpitäjän. 
+	\item Uuden reseptin ehdotuksen hyväksyminen\(\colon\) käyttäjä voi hyväksyä tavallisen käyttäjän reseptiehdotuksen, ja lisätä reseptin tietokantaan.
+	\item Reseptin lisäys lomakkeella\(\colon\) käyttäjä voi lisätä reseptin käyttäen siihen tarkoitettua lomaketta.
+	\item Reseptin lisäys tiedostosta\(\colon\) käyttäjä voi lisätä uuden reseptin lukemalla sen suoraan tiedostosta. 
+	\item Muut käyttötapaukset\(\colon\) Käyttäjätietojen muutos, käyttäjätilin poisto, käyttäjätunnuksen luominen, reseptien selaaminen, kirjautuminen
+\end{itemize}
 
-Reseptien haku\(\colon\) käyttäjä voi hakea tietokannasta reseptejä hakusanalla. Yksi hakusana voi tuottaa monta tulosta.
+\begin{flushleft}\textbf{Tavallinen käyttäjä\(\colon\)} \end{flushleft}
 
-Reseptien listaus\(\colon\) käyttäjä voi listata reseptit ainesosan mukaan tai aakkos-- tai juomalajijärjestykseen.
+\begin{itemize}
+	\item Reseptien haku \(\colon\) käyttäjä voi hakea tietokannasta reseptejä hakusanalla. Yksi hakusana voi tuottaa monta tulosta.
+	\item Reseptien listaus\(\colon\) käyttäjä voi listata reseptit ainesosan mukaan tai aakkos-- tai juomalajijärjestykseen.
+	\item Uuden reseptin ehdottaminen\(\colon\) käyttäjä voi ehdottaa uutta reseptiä ylläpitäjälle lisättäväksi tietokantaan.
+	\item Muut käyttötapaukset\(\colon\) Käyttäjätietojen muutos, käyttäjätilin poisto, käyttäjätunnuksen luominen, reseptien selaaminen, kirjautuminen
+\end{itemize}
 
-Ylläpito-oikeuden antaminen tavalliselle käyttäjälle\(\colon\) käyttäjä voi tehdä tavallisesta käyttäjästä ylläpitäjän. 
+\section{Järjestelmän tietosisältö}
+\begin{flushleft}\textbf{Käsitekaavio} \end{flushleft}
 
-Uuden reseptin ehdotuksen hyväksyminen\(\colon\) käyttäjä voi hyväksyä tavallisen käyttäjän reseptiehdotuksen, ja lisätä reseptin tietokantaan.
+\includegraphics[scale=0.8]{kasitekaavio.pdf}
 
-Reseptin lisäys lomakkeella\(\colon\) käyttäjä voi lisätä reseptin käyttäen siihen tarkoitettua lomaketta.
+\begin{flushleft}\textbf{Juoma} \end{flushleft}
+\begin{flushleft}
+	\begin{tabular}{|l|l|l|}\hline
+			Attribuutti      & Arvojoukko        & Kuvailu\\
+			\hline
+			nimi & merkkijono, maksimissaan 50 merkkiä & Juoman nimi.\\ 
+			\hline
+			lisääjä & merkkijono, maksimissaan 50 merkkiä & Lisääjän nimimerkki.\\ 
+			\hline
+			lisäyspäivämäärä & päivämäärä (date) & Päivämäärä, jolloin drinkkiohje on lisätty.\\ 
+			\hline
+			ainesosat  & merkkijono,maksimissaan 50 merkkiä & Ainekset, joista drinkki tehdään. \\
+			\hline
+			juomalaji    & merkkijono,maksimissaan 50 merkkiä  & Juoman käyttötarkoitus. \\ 
+			\hline
+			kuvaus    & merkkijono, maksimissaan 400 merkkiä & Juoman kuvaus. \\ 
+				\hline
+	\end{tabular}
+\end{flushleft}
 
-Reseptin lisäys tiedostosta\(\colon\) käyttäjä voi lisätä uuden reseptin lukemalla sen suoraan tiedostosta. 
+\begin{flushleft}\textbf{Ainesosat} \end{flushleft}
+\begin{flushleft}
+	\begin{tabular}{|l|l|l|}
+			\hline
+			Attribuutti & Arvojoukko & Kuvailu \\ 
+			\hline
+			ainesosa & merkkijono, maksimissaan 50 merkkiä & Ainesosan nimi. \\ 
+			\hline
+	\end{tabular}
+\end{flushleft}
 
-Muut käyttötapaukset\(\colon\) Käyttäjätietojen muutos, käyttäjätilin poisto, käyttäjätunnuksen luominen, reseptien selaaminen, kirjautuminen
+\begin{flushleft}\textbf{Käyttäjä} \end{flushleft}
+\begin{flushleft}
+	\begin{tabular}{|l|l|l|}
+			\hline
+			Attribuutti & Arvojoukko & Kuvailu   \\ 
+			\hline
+			nimimerkki  & merkkijono, maksimissaan 50 merkkiä & Käyttäjän nimimerkki. \\ 
+			\hline
+			salasana    & merkkijono, maksimissaan 50 merkkiä & Käyttäjän salasana.   \\ 
+			\hline
+	\end{tabular}
+\end{flushleft}
 
-\begin{flushleft}\textbf{Tavallinen käyttäjä\(\colon\)}\end{flushleft}
+\begin{flushleft}\textbf{Ainesosayhteys} \end{flushleft}
+\begin{flushleft}
+	\begin{tabular}{|l|l|l|}
+			\hline
+			Attribuutti & Arvojoukko & Kuvailu   \\ 
+			\hline
+			juoma id  & lukujono & Yhteys Juoma-tauluun. \\ 
+			\hline
+			ainesosa id    & lukujono & Yhteys Ainesosa-tauluun.  \\ 
+			\hline
+	\end{tabular}
+\end{flushleft}
 
-Reseptien haku\(\colon\) käyttäjä voi hakea tietokannasta reseptejä hakusanalla. Yksi hakusana voi tuottaa monta tulosta.
+\section{Relaatiokaavio}
+\begin{flushleft}\textbf{Relaatiokaavio} \end{flushleft}
 
-Reseptien listaus\(\colon\) käyttäjä voi listata reseptit ainesosan mukaan tai aakkos-- tai juomalajijärjestykseen.
+\includegraphics[scale=0.8]{relaatiokaavio.pdf}
 
-Uuden reseptin ehdottaminen\(\colon\) käyttäjä voi ehdottaa uutta reseptiä ylläpitäjälle lisättäväksi tietokantaan.
- 
-Muut käyttötapaukset\(\colon\) Käyttäjätietojen muutos, käyttäjätilin poisto, käyttäjätunnuksen luominen, reseptien selaaminen, kirjautuminen
+
+\section{Järjestelmän yleisrakenne}
+\section{Käyttöliittymä ja järjestelmän komponentit}
+\section{Asennustiedot}
+\section{Käynnistys- /käyttöohje}
+\section{Testaus, tunnetut bugit ja puutteet ja jatkokehitysideat}
+\section{Omat kokemukset}
+\section{Muu dokumentaatio}
 
 \end{document}

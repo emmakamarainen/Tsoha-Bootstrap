@@ -1,16 +1,27 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<h1>Drinkin nimi <small> drinkkiresepti</small></h1>
+
+<dl class="dl-horizontal">
+    <dt> Lisääjä</dt>
+    <dd> nimimerkki</dd>
+    <dt> Lisäyspäivämäärä</dt>
+    <dd> 00.00.0000</dd>
+</dl>
+<dl>
+    <dt>Kuvaus</dt>
+    <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</dd>
+</dl>
+<dl>
+    <dt>Aineosat</dt>
+</dl>
+<dl class="dl-horizontal">
+    <dt> X cl</dt>
+    <dd> 1.ainesosa</dd>
+    <dt> X cl</dt>
+    <dd> 2.ainesosa</dd>
+    <dt> X cl</dt>
+    <dd> 3.ainesosa</dd>
+</dl>
+
+{% endblock %}
