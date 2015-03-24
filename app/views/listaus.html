@@ -3,7 +3,7 @@
   <h1>Drinkkien ohjeet</h1>
 
   <p>
-    <a href="#" class="btn btn-success">Lisää drinkki</a>
+    <a href="{{base_path}}/juoma/{{juoma.id}}/new" class="btn btn-success">Lisää drinkki</a>
   </p>
 
   <table class="table table-condensed">
@@ -26,7 +26,7 @@
         <td>nimimerkki</td>        
         <td>aine, aine, ...</td>
         <td>alkujuoma</td>
-        <th><a class="btn btn-default btn-sm" href="#">Muokkaa</a></th>
+        <th><a class="btn btn-default btn-sm" href="{{base_path}}/juoma/{{juoma.id}}/edit">Muokkaa</a></th>
       </tr>
       <tr>
         <td><a href="#">juomannimi</a></td>
