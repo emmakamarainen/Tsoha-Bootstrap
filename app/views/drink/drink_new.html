@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1> Uusi juoma</h1>
+
+<form method="post" action="{{base_path}}/drink" class="form-horizontal">
+
+    <div class="form-group">
+        <label  class="col-sm-2 control-label">Nimi</label>
+        <div class="col-sm-10">
+            <input type="text" name="nimi" class="form-control" placeholder="Nimi">
+        </div>
+    </div>
+    <div class="form-group">
+        <label  class="col-sm-2 control-label">Lisäyspäivä</label>
+        <div class="col-sm-10">
+            <input type="text" name="lisayspvm" class="form-control"  placeholder="pvm">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Lisääjä</label>
+        <div class="col-sm-10">
+            <input type="text" name="kayttaja_id" class="form-control"  placeholder="nimimerkki">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Ainesosat</label>
+        <div class="col-sm-10">
+            <input type="text" name="ainesosat" class="form-control"  placeholder="aine, aine, ...">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Juomalaji</label>
+        <div class="col-sm-10">
+            <input type="text" name="juomalaji" class="form-control"  placeholder="laji">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Kuvaus</label>
+        <div class="col-sm-10">
+            <textarea  name="kuvaus" class="form-control" placeholder="Lorem ipsum"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Lisää</button>
+    </div>
+</form>
+{% endblock %}

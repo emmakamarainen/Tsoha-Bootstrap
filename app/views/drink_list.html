@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Drinkkien ohjeet</h1>
+
+<p>
+    <a href="{{base_path}}/drink/{{juoma.id}}/new" class="btn btn-success">Lisää drinkki</a>
+</p>
+
+<table class="table table-condensed">
+    <thead>
+        <tr class="success">
+            <th>Nimi</th>
+            <th>Lisäyspäivä</th>
+            <th>Lisääjä</th>
+            <th>Ainesosat</th>
+            <th>Juomalaji</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for juoma in juomat %}
+        <tr>
+            <td><a href="{{base_path}}/juoma/{{juoma.id}}">{{juoma.nimi}}</a></td>
+            <td>{{juoma.lisayspvm}}</td>
+            <td>{{juoma.kayttaja_id}}</td>        
+            <td>{{juoma.ainesosat}}</td>
+            <td>{{juoma.juomalaji}}</td>
+            <th><a class="btn btn-default btn-sm" href="{{base_path}}/drink/{{juoma.id}}/edit">Muokkaa</a></th>
+        </tr>   
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

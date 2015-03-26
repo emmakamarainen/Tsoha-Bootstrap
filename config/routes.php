@@ -8,42 +8,43 @@
     HelloWorldController::sandbox();
   });
   
-  $routes->get('/etusivu', function() {
-    HelloWorldController::etusivu();
-  });
+    /*JuomatController*/
   
-  $routes->get('/muokkaus', function() {
-    HelloWorldController::muokkaus();
-  });
-  
-  $routes->get('/listaus', function() {
-    HelloWorldController::listaus();
-  });
-  
-  $routes->get('/esittely', function() {
-    HelloWorldController::esittely();
-  });
-  
-  $routes->get('/login', function() {
-    HelloWorldController::login();
-  });
-  
-  /*JuomatController*/
-  
-  $routes->get('/juoma', function() {
-    JuomatController::index();
+  $routes->get('/home', function() {
+    JuomatController::home();
   });
   
   $routes->get('/', function() {
-    JuomatController::esittely();
+    JuomatController::home();
   });
   
-  $routes->get('/esittely', function() {
-    JuomatController::esittely();
+  $routes->get('/drink_edit', function() {
+    JuomatController::drink_edit();
   });
   
-  $routes->get('/esittely/:id', function($id) {
+  $routes->get('/drink_list', function() {
+    JuomatController::drink_list();
+  });
+  
+  $routes->get('/login', function() {
+    JuomatController::login();
+  });
+
+  
+  $routes->get('/drink/:id', function($id) {
     JuomatController::show($id);
+  });
+  
+  $routes->post('/drink', function() {
+    JuomatController::store();
+  });
+  
+  $routes->post('/drink_new', function() {
+    JuomatController::drink_new();
+  });
+  
+  $routes->get('/drink_new', function() {
+    JuomatController::drink_new();
   });
   
 

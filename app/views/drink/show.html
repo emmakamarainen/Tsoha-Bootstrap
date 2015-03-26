@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Drinkin nimi <small> drinkkiresepti</small></h1>
+<h1><a href="{{base_path}}/juoma/{{juoma.id}}">{{juoma.nimi}}</a> <small> drinkkiresepti</small></h1>
 
 <dl class="dl-horizontal">
-    <dt> Lisääjä</dt>
-    <dd> nimimerkki</dd>
+    <dt> Lisääjä: </dt>
+    <dd> {{juoma.kayttaja_id}}</dd>
     <dt> Lisäyspäivämäärä</dt>
-    <dd> 00.00.0000</dd>
+    <dd> {{juoma.lisayspvm}}</dd>
 </dl>
 <dl>
     <dt>Kuvaus</dt>
-    <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</dd>
+    <dd>{{juoma.kuvaus}}</dd>
 </dl>
 <dl>
     <dt>Aineosat</dt>

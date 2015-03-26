@@ -24,24 +24,24 @@ class HelloWorldController extends BaseController {
         View::make('login.html');
     }
 
-    public static function etusivu() {
+    public static function home() {
         // Testaa koodiasi täällä
-        View::make('etusivu.html');
+        View::make('home.html');
     }
 
-    public static function muokkaus() {
+    public static function drink_edit() {
         // Testaa koodiasi täällä
-        View::make('muokkaus.html');
+        View::make('drink_edit.html');
     }
 
-    public static function listaus() {
+    public static function drink_list() {
         // Testaa koodiasi täällä
-        View::make('listaus.html');
+        View::make('drink_list.html');
     }
 
-    public static function esittely() {
+    public static function show() {
         // Testaa koodiasi täällä
-        View::make('esittely.html');
+        View::make('show.html');
     }
 
 }
