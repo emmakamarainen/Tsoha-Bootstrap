@@ -33,7 +33,7 @@ class Juoma extends BaseModel {
         $row = $query->fetch();
 
         if ($row) {
-            $juomat[] = new Juoma(array(
+            $juoma = new Juoma(array(
                 'id' => $row['id'],
                 'kayttaja_id' => $row['kayttaja_id'],
                 'nimi' => $row['nimi'],
@@ -41,18 +41,17 @@ class Juoma extends BaseModel {
                 'juomalaji' => $row['juomalaji'],
                 'kuvaus' => $row['kuvaus']
             ));
-            return $juomat;
+            return $juoma;
         }
         return null;
     }
 
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Juoma (nimi, lisayspvm, lisaaja, ainesosat,'
-                . ' juomalaji, kuvaus) VALUES (:nimi, :lisayspvm, :lisaaja, :ainesosat,'
+        $query = DB::connection()->prepare('INSERT INTO Juoma (nimi, lisayspvm, lisaaja,'
+                . ' juomalaji, kuvaus) VALUES (:nimi, :lisayspvm, :lisaaja,'
                 . ' :juomalaji, :kuvaus) RETURNING id');
         $query->execute(array('nimi' => $this->nimi, 'lisayspvm' => $this->lisayspvm,
-            'lisaaja' => $this->kayttaja_id, 'ainesosat' => $this->ainesosat,
-            'juomalaji' => $this->juomalaji, 'kuvaus' => $this->kuvaus));
+            'lisaaja' => $this->kayttaja_id, 'juomalaji' => $this->juomalaji, 'kuvaus' => $this->kuvaus));
         $row = $query->fetch();
         $this->id = $row['id'];
     }

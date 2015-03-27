@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Ainesosat</h1>
+
+<table class="table table-condensed">
+    <thead>
+        <tr class="success">
+            <th>Nimi</th>            
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for aine in aineet %}
+        <tr>
+            <td>{{aine.ainesosa}}</td>                 
+        </tr>   
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

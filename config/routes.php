@@ -1,8 +1,5 @@
 <?php
 
-  $routes->get('/', function() {
-    HelloWorldController::index();
-  });
 
   $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
@@ -18,8 +15,12 @@
     JuomatController::home();
   });
   
-  $routes->get('/drink_edit', function() {
+  $routes->get('/drink/edit', function() {
     JuomatController::drink_edit();
+  });
+  
+  $routes->get('/drink/:id/edit', function($id) {
+    JuomatController::drink_edit($id);
   });
   
   $routes->get('/drink_list', function() {
@@ -32,7 +33,7 @@
 
   
   $routes->get('/drink/:id', function($id) {
-    JuomatController::show($id);
+    JuomatController::drink_show($id);
   });
   
   $routes->post('/drink', function() {
@@ -45,6 +46,10 @@
   
   $routes->get('/drink_new', function() {
     JuomatController::drink_new();
+  });
+  
+  $routes->get('/aine_list', function() {
+    JuomatController::aine_list();
   });
   
 

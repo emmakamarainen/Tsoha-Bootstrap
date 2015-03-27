@@ -6,6 +6,9 @@ INSERT INTO Kayttaja(nimimerkki,salasana, yllapitaja) VALUES ('Doku', 'alkkis', 
 
 INSERT INTO Juoma(nimi,lisayspvm,juomalaji,kuvaus) VALUES ('Kola', '16.03.1990','limonaadi','herkkua se on');
 INSERT INTO Juoma(nimi,lisayspvm,juomalaji,kuvaus) VALUES ('Drinksu', '19.3.2015','alkoholi','saattaa tapppaa');
+INSERT INTO Juoma(nimi,lisayspvm,juomalaji,kuvaus) VALUES ('GinTonic', '27.03.2015','drinkki','Toiset tykkää, toiset ei');
+INSERT INTO Juoma(nimi,lisayspvm,juomalaji,kuvaus) VALUES ('Viskikola', '27.03.2015','drinkki','Mahtava juoma, jos tykkää kolan mausta ja viskistä...');
+
 
 INSERT INTO Ainesosat(ainesosa) VALUES ('Sitruuna');
 INSERT INTO Ainesosat(ainesosa) VALUES ('Coca-Cola');

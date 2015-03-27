@@ -1,14 +1,17 @@
 <?php
 
+require 'app/models/juoma.php';
+require 'app/models/ainesosa.php';
+
 class JuomatController extends BaseController {
 
     public static function drink_list() {
         $juomat = Juoma::all();
-        View::make('drink_list.html', array('juomat' => $juomat));
+        View::make('drink/drink_list.html', array('juomat' => $juomat));
     }
 
     public static function store() {
-        $param = $_POST;
+        $params = $_POST;
         $juoma = new Juoma(array(
             'nimi' => $params['nimi'],
             'lisayspvm' => $params['lisayspvm'],
@@ -18,12 +21,12 @@ class JuomatController extends BaseController {
             'kuvaus' => $params['kuvaus'],
         ));
 
-        $game->save();
+        $juoma->save();
         Redirect::to('/drink' . $juoma->id, array('message' => 'Juoma lisätty!'));
     }
 
     public static function drink_new() {
-        View::make('/drink/drink_new.html');
+        View::make('drink/drink_new.html');
     }
 
     public static function login() {
@@ -34,14 +37,25 @@ class JuomatController extends BaseController {
         View::make('home.html');
     }
 
+//    Drinkin muokkaussivu id:n mukaan
+//    public static function drink_edit($id) {
+//        View::make('drink/drink_edit.html');
+//    }
+    
     public static function drink_edit() {
-        View::make('drink_edit.html');
+        View::make('drink/drink_edit.html');
     }
 
     
-    public static function show($id) {
+    public static function drink_show($id) {
         $juoma = Juoma::find($id);
-        View::make('drink/show.html', array('juoma' => $juoma));
+        $aine = Ainesosa::find($id);
+        View::make('drink/drink_show.html', array('juoma' => $juoma, 'aine' => $aine));
+    }
+    
+    public static function aine_list() {
+        $aineet = Ainesosa::all();
+        View::make('aine/aine_list.html', array('aineet' => $aineet));
     }
 
 }

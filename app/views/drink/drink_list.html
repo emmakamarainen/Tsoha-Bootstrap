@@ -2,8 +2,8 @@
 {% block content %}
 <h1>Drinkkien ohjeet</h1>
 
-<p>
-    <a href="{{base_path}}/drink/{{juoma.id}}/new" class="btn btn-success">Lisää drinkki</a>
+<p>   
+    <a href="{{base_path}}/drink_new" class="btn btn-success">Lisää drinkki</a>
 </p>
 
 <table class="table table-condensed">
@@ -21,10 +21,10 @@
     <tbody>
         {% for juoma in juomat %}
         <tr>
-            <td><a href="{{base_path}}/juoma/{{juoma.id}}">{{juoma.nimi}}</a></td>
+            <td><a href="{{base_path}}/drink/{{juoma.id}}">{{juoma.nimi}}</a></td>
             <td>{{juoma.lisayspvm}}</td>
             <td>{{juoma.kayttaja_id}}</td>        
-            <td>{{juoma.ainesosat}}</td>
+            <td>Juoman ainesosat</td>
             <td>{{juoma.juomalaji}}</td>
             <th><a class="btn btn-default btn-sm" href="{{base_path}}/drink/{{juoma.id}}/edit">Muokkaa</a></th>
         </tr>   
