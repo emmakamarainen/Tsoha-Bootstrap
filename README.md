@@ -2,10 +2,10 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseni etusivulle](http://kaem.users.cs.helsinki.fi/Drinkkiarkisto/etusivu)
-* [Linkki sovellukseni esittelysivulle](http://kaem.users.cs.helsinki.fi/Drinkkiarkisto/esittely)
-* [Linkki sovellukseni muokkaussivulle](http://kaem.users.cs.helsinki.fi/Drinkkiarkisto/muokkaus)
-* [Linkki sovellukseni listaussivulle](http://kaem.users.cs.helsinki.fi/Drinkkiarkisto/listaus)
+* [Linkki sovellukseni etusivulle](http://kaem.users.cs.helsinki.fi/Drinkkiarkisto/home)
+* [Linkki sovellukseni esittelysivulle](http://kaem.users.cs.helsinki.fi/Drinkkiarkisto/show)
+* [Linkki sovellukseni muokkaussivulle](http://kaem.users.cs.helsinki.fi/Drinkkiarkisto/drink_edit)
+* [Linkki sovellukseni listaussivulle](http://kaem.users.cs.helsinki.fi/Drinkkiarkisto/drink_list)
 * [Linkki sovellukseni kirjautumissivulle](http://kaem.users.cs.helsinki.fi/Drinkkiarkisto/login)
 * [Linkki dokumentaatiooni](https://github.com/emmakamarainen/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.pdf)
 
