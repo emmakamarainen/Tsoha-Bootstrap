@@ -23,6 +23,10 @@
     JuomatController::drink_edit($id);
   });
   
+  $routes->post('/drink/:id/edit', function($id){
+    JuomatController::update($id);
+  });
+  
   $routes->get('/drink_list', function() {
     JuomatController::drink_list();
   });
@@ -50,6 +54,10 @@
   
   $routes->get('/aine_list', function() {
     JuomatController::aine_list();
+  });
+  
+  $routes->post('/drink/:id/destroy', function($id){
+    JuomatController::destroy($id);
   });
   
 
