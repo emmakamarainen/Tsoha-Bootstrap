@@ -1,3 +1,7 @@
+<?php
+
+require 'app/models/juoma.php';
+require 'app/models/ainesosa.php';
 
 class UserController extends BaseController{
 
