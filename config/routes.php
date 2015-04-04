@@ -32,9 +32,12 @@
   });
   
   $routes->get('/login', function() {
-    JuomatController::login();
+    UserController::login();
   });
-
+  
+  $routes->post('/login', function() {
+    UserController::handle_login();
+  });
   
   $routes->get('/drink/:id', function($id) {
     JuomatController::drink_show($id);
