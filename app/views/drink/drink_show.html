@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
+{% import "macros/forms.html" as forms %}
+
 <h1> {{juoma.nimi}}<small> drinkkiresepti</small></h1>
 
 <dl>
@@ -26,6 +28,5 @@
     <dd> {{aine.ainesosa}}</dd>
 </dl>
 {%endfor%}
-
-
+{{forms.destroy_button("#{base_path}/drink/#{juoma.id}/destroy")}}
 {% endblock %}
