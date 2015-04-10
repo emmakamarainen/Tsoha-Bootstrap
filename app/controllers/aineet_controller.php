@@ -2,11 +2,13 @@
 
 require 'app/models/juoma.php';
 require 'app/models/ainesosa.php';
+require 'app/models/user.php';
 
-class AineController extends BaseController {
+class AineetController extends BaseController {
     
     public static function aine_list() {
         $aineet = Ainesosa::all();
+        
         View::make('aine/aine_list.html', array('aineet' => $aineet));
     }
     

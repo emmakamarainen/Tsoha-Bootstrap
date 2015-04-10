@@ -32,7 +32,30 @@ class User extends BaseModel {
         $user->destroy();
         Redirect::to('/', array('message' => 'Poistettu.'));
     }
-    
+
+    public static function authenticate($nimimerkki, $salasana) {
+//        $query = DB::connection()->prepare('SELECT * FROM Kayttaja '
+//                . 'WHERE nimimerkki = :nimimerkki AND salasana = :salasana '
+//                . 'LIMIT 1', array('nimimerkki' => 'Doku', 'salasana' => 'alkkis'));
+        $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE nimimerkki = \'Doku\' AND salasana = \'alkkis\' LIMIT 1');
+        $query->execute();
+        $row = $query->fetch();
+        Kint::dump($row);
+        if ($row) {
+            // Käyttäjä löytyi, palautetaan löytynyt käyttäjä oliona
+            $user = new User(array(
+                'id' => $row['id'],
+                'nimimerkki' => $row['nimimerkki'],
+                'salasana' => $row['salasana'],
+                'yllapitaja' => $row['yllapitaja'],
+            ));
+            return $user;
+        } else {
+            // Käyttäjää ei löytynyt, palautetaan null
+            return null;
+        }
+    }
+
     public function validate_nimimerkki() {
         $errors = array();
         if ($this->nimimerkki == '' || $this->nimimerkki == null) {
@@ -43,7 +66,7 @@ class User extends BaseModel {
         }
         return $errors;
     }
-    
+
     public function validate_salasana() {
         $errors = array();
         if ($this->salasana == '' || $this->salasana == null) {
@@ -53,7 +76,6 @@ class User extends BaseModel {
             $errors[] = 'Salasanan pituuden tulee olla vähintään viisi merkkiä!';
         }
         return $errors;
-        
     }
 
 }

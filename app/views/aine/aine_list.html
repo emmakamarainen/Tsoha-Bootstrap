@@ -3,6 +3,7 @@
 
 <h1>Ainesosat</h1>
 
+{% if user_logged_in %}
 <table class="table table-condensed">
     <thead>
         <tr class="success">
@@ -11,11 +12,15 @@
     </thead>
 
     <tbody>
-        {% for aine in aineet %}
+        {% for ainesosa in aineet %}
         <tr>
-            <td>{{ainesosat.ainesosa}}</td>
+            <td>{{ainesosa.ainesosa}}</td>
         </tr>   
         {% endfor %}
     </tbody>
 </table>
+<p>
+    <a href="{{base_path}}/drink_new" class="btn btn-success">Lisää drinkki</a>
+<p/>
+{% endif %}
 {% endblock %}

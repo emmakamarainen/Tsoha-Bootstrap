@@ -3,7 +3,8 @@
 {% import "macros/forms.html" as forms %}
 
 <h1>Drinkkien ohjeet</h1>
-
+Kirjaudu sisään nähdäksesi drinkkien ohjeet.
+{% if user_logged_in %}
 <p>   
     <a href="{{base_path}}/drink_new" class="btn btn-success">Lisää drinkki</a>
     <a href="{{base_path}}/drink_new" class="btn btn-success">Ehdota drinkkiä</a>
@@ -27,11 +28,12 @@
             <td><a href="{{base_path}}/drink/{{juoma.id}}">{{juoma.nimi}}</a></td>
             <td>{{juoma.lisayspvm}}</td>
             <td>{{juoma.kayttaja_id}}</td>         
-            <td>{{ainesosat.ainesosa}}</td>                        
+            <td>{{ainesosa.ainesosa}}</td>                        
             <td>{{juoma.juomalaji}}</td>
             <th><a class="btn btn-default btn-sm" href="{{base_path}}/drink/{{juoma.id}}/edit">Muokkaa</a></th>
         </tr>   
         {% endfor %}
     </tbody>
 </table>
+{% endif %}
 {% endblock %}

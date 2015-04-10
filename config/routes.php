@@ -18,9 +18,6 @@ $routes->get('/search', function() {
     JuomatController::search();
 });
 
-//$routes->get('/drink/edit', function() {
-//    JuomatController::drink_edit();
-//});
 
 $routes->get('/drink/:id/edit', function($id) {
     JuomatController::edit($id);
@@ -65,8 +62,8 @@ $routes->post('/login', function() {
     UserController::handle_login();
 });
 
-/* AineController */
+/* AineetController */
 
 $routes->get('/aine_list', function() {
-    AineController::aine_list();
+    AineetController::aine_list();
 });

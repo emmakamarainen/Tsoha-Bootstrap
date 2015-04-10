@@ -2,6 +2,7 @@
 
 require 'app/models/juoma.php';
 require 'app/models/ainesosa.php';
+require 'app/models/user.php';
 
 class JuomatController extends BaseController {
 
@@ -12,19 +13,24 @@ class JuomatController extends BaseController {
 
     public static function store() {
         $params = $_POST;
-        $juoma = new Juoma(array(
+        $attributes = array(
             'nimi' => $params['nimi'],
-            //'lisayspvm' => $params['lisayspvm'],
+//            'lisayspvm' => $params['lisayspvm'],
             'kayttaja_id' => 1,
             //'ainesosat' => $params['ainesosat'],
             'juomalaji' => $params['juomalaji'],
             'kuvaus' => $params['kuvaus'],
-        ));
+        );
 
-        $juoma->save();
-        Redirect::to('/drink/' . $juoma->id, array('message' => 'Juoma lisätty!'));
+        $juoma = new Juoma($attributes);
+        $errors = $juoma->errors();
+        if (count($errors) == 0) {
+            $juoma->save();
+            Redirect::to('/drink/' . $juoma->id, array('message' => 'Juoma lisätty!'));
+        } else {
+            View::make('drink/drink_new.html', array('errors' => $errors, 'attributes' => $attributes));
+        }
     }
-  
 
     public static function drink_new() {
         View::make('drink/drink_new.html');
@@ -46,7 +52,6 @@ class JuomatController extends BaseController {
 //    public static function drink_edit($id) {
 //        View::make('drink/drink_edit.html');
 //    }
-
 //    public static function drink_edit() {
 //        View::make('drink/drink_edit.html');
 //    }
@@ -55,8 +60,6 @@ class JuomatController extends BaseController {
         $juoma = Juoma::find($id);
         View::make('drink/drink_show.html', array('juoma' => $juoma));
     }
-
-    
 
     public static function edit($id) {
         $juoma = Juoma::find($id);
@@ -76,13 +79,13 @@ class JuomatController extends BaseController {
         );
         // Alustus
         $juoma = new Juoma($attributes);
-        //$errors = $juoma->errors();
-       // if (count($errors) > 0) {
-        //    View::make('drink/drink_edit.html', array('errors' => $errors, 'attributes' => $attributes));
-        //} else {
+        $errors = $juoma->errors();
+        if (count($errors) > 0) {
+            View::make('drink/drink_edit.html', array('errors' => $errors, 'attributes' => $attributes));
+        } else {
             $juoma->update();
             Redirect::to('/drink/' . $juoma->id, array('message' => 'Muokkaus onnistui.'));
-        //}
+        }
     }
 
     public static function destroy($id) {

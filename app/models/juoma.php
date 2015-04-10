@@ -6,7 +6,7 @@ class Juoma extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validate_name, validate_juomalaji');
+        $this->validators = array('validate_name', 'validate_juomalaji');
     }
 
     public static function all() {
@@ -71,10 +71,10 @@ class Juoma extends BaseModel {
 
     public function validate_name() {
         $errors = array();
-        if ($this->name == '' || $this->name == null) {
+        if ($this->nimi == '' || $this->nimi == null) {
             $errors[] = 'Nimi ei saa olla tyhjä!';
         }
-        if (strlen($this->name) < 3) {
+        if (strlen($this->nimi) < 3) {
             $errors[] = 'Nimen pituuden tulee olla vähintään kolme merkkiä!';
         }
         return $errors;
