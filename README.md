@@ -1,5 +1,10 @@
 # Tietokantasovelluksen esittelysivu
 
+HUOM. Kirjautuminen ei toimi vielä, jotain mystistä käy jos yrittää kirjautua jonka jälkeen koko juttu hajoaa. Eli jos sitä tahtoo kokeilla, niin kannattaa tehdä se viimeiseksi. 
+
+Käyttäjätunnus: Doku
+salasana: alkkis
+
 Yleisiä linkkejä:
 
 * [Linkki sovellukseni etusivulle](http://kaem.users.cs.helsinki.fi/Drinkkiarkisto/home)
