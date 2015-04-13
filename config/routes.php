@@ -18,7 +18,6 @@ $routes->get('/search', function() {
     JuomatController::search();
 });
 
-
 $routes->get('/drink/:id/edit', function($id) {
     JuomatController::edit($id);
 });
@@ -61,6 +60,44 @@ $routes->get('/login', function() {
 $routes->post('/login', function() {
     UserController::handle_login();
 });
+
+$routes->get('/user/:id/edit', function($id) {
+    UserController::edit($id);
+});
+
+$routes->post('/user/:id/edit', function($id) {
+    UserController::update($id);
+});
+
+$routes->get('/user/:id', function($id) {
+    UserController::user_show($id);
+});
+
+$routes->post('/user/:id/destroy', function($id) {
+    UserController::destroy($id);
+});
+
+$routes->get('/user_list', function() {
+    UserController::user_list();
+});
+
+$routes->post('/logout', function(){
+  UserController::logout();
+});
+
+$routes->post('/user', function() {
+    UserController::store();
+});
+
+$routes->post('/user_new', function() {
+    UserController::store();
+});
+
+$routes->get('/user_new', function() {
+    UserController::user_new();
+});
+
+
 
 /* AineetController */
 

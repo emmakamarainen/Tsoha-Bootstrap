@@ -142,13 +142,31 @@ Tavallinen käyttäjä voi olla kuka tahansa sivulle kirjautunut henkilö.
 
 
 \section{Järjestelmän yleisrakenne}
+
+Kansiorakenne tulee melkein suoraan forkatusta reposta. "App"-kansioon on sijoitettu alakansioita, 
+joissa sijaitsevat samoilla nimillä kontrollerit, mallit ja näkymät. Näkymät on jaettu vielä alakansioihin 
+sisällön mukaan (juoma, user ja aine). Malleista (models) löytyvät pääluokat juoma, user ja aine. Dokumentaatio 
+sijaitsee kansiossa "doc". Sieltä löytyvät tähän sovellukseen liittyvät kaaviot ja ohjeet. Tietokantasovellusta
+tehdessä on käytetty MVC-mallia. 
+
+Sovellukseen kirjaudutaan, joka käynnistää session. Kirjautunut käyttäjä näkee listaukset ja pystyy muokkaamaan 
+drinkkiohjeita. Ylläpitäjä pystyy lisäämään kokonaisen uuden juomaohjeen sekä korottamaan tavallisen käyttäjän 
+ylläpitäjäksi. Sovelluksesta pystyy kirjautumaan ulos, jolloin palaa takaisin etusivulle. 
+
 \section{Käyttöliittymä ja järjestelmän komponentit}
 \section{Asennustiedot}
 \section{Käynnistys- /käyttöohje}
 Harjoitustyö löytyy osoitteesta \url{http://kaem.users.cs.helsinki.fi/Drinkkiarkisto/}
 
+Sovellukseen pitää kirjautua sisään, jotta pystyy hakemaan reseptejä. Kirjautumaton käyttäjä voi selailla
+kaikkia juomareseptejä ja drinkkien ainesosia. Kirjautunut käyttäjä voi olla joko tavallinen käyttäjä tai sitten
+ylläpitäjä. Ylläpitäjä näkee enemmän sisältö sivuilla kuin tavallinen käyttäjä, muun muassa ”Lisää juoma” –
+toiminnon. Kirjautumissivulle pääsee joko etusivulta, tai sitten yläpalkin ”Kirjaudu sisään” – painikkeen
+kautta. Yläpalkissa on myös linkit ”Drinkkiarkisto”, joka johtaa etusivulle, ”Juomat”, joka johtaa kaikkien
+juomareseptien listaussivulle, ja ”Aineet”, joka listaa juomien ainesosat omaksi listakseen.
+Ylläpitäjän näkymää pääsee katsomaan käyttäjätunnuksella ”Doku” ja sen salasanalla ”alkkis”. Tavallisen
+käyttäjän sivut aukeavat puolestaan tunnuksilla ”Olio” ja sitä vastaavalla salasanalla ”olioolio”.
 
-Kirjautumiseen tarvittava käyttäjätunnus on xxxx ja salasana xxxx.
 \section{Testaus, tunnetut bugit ja puutteet ja jatkokehitysideat}
 \section{Omat kokemukset}
 \section{Muu dokumentaatio}

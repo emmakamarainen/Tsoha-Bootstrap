@@ -48,14 +48,6 @@ class JuomatController extends BaseController {
         View::make('search.html');
     }
 
-////    Drinkin muokkaussivu id:n mukaan
-//    public static function drink_edit($id) {
-//        View::make('drink/drink_edit.html');
-//    }
-//    public static function drink_edit() {
-//        View::make('drink/drink_edit.html');
-//    }
-
     public static function drink_show($id) {
         $juoma = Juoma::find($id);
         View::make('drink/drink_show.html', array('juoma' => $juoma));
@@ -75,7 +67,7 @@ class JuomatController extends BaseController {
             'kayttaja_id' => 1,
 //            'ainesosat' => $params['ainesosat'],
             'juomalaji' => $params['juomalaji'],
-            'kuvaus' => $params['kuvaus'],
+            'kuvaus' => $params['kuvaus']
         );
         // Alustus
         $juoma = new Juoma($attributes);
