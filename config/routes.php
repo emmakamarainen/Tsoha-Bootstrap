@@ -62,6 +62,14 @@ $routes->post('/login', function() {
     UserController::handle_login();
 });
 
+$routes->get('/user/:id/edit', function($id) {
+    UserController::edit($id);
+});
+
+$routes->post('/user/:id/edit', function($id) {
+    UserController::update($id);
+});
+
 /* AineetController */
 
 $routes->get('/aine_list', function() {

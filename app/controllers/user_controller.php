@@ -19,5 +19,29 @@ class UserController extends BaseController {
             
         }
     }
+    
+    public static function edit($id) {
+        $juoma = User::find($id);
+        View::make('user/user_edit.html', array('user' => $user));
+    }
+
+    public static function update($id) {
+        $params = $_POST;
+        $attributes = array(
+            'id' => $id,
+            'nimimerkki' => $params['nimimerkki'],
+            'salasana' => $params['salasana'],
+            
+        );
+        // Alustus
+        $user = new User($attributes);
+        $errors = $user->errors();
+        if (count($errors) > 0) {
+            View::make('user/user_edit.html', array('errors' => $errors, 'attributes' => $attributes));
+        } else {
+            $user->update();
+            Redirect::to('/user/' . $user->id, array('message' => 'Muokkaus onnistui.'));
+        }
+    }
 
 }

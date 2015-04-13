@@ -11,7 +11,7 @@ class User extends BaseModel {
 
     public static function find($id) {
         $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE nimimerkki = :nimimerkki '
-                . '. AND salasana = :salasana LIMIT 1', array('nimimerkki' => $nimimerkki, 'salasana' => $salasana));
+                . 'AND salasana = :salasana LIMIT 1', array('id' => $id));
         $query->execute();
         $row = $query->fetch();
 
