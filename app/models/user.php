@@ -65,8 +65,7 @@ class User extends BaseModel {
     }
 
     public static function authenticate($nimimerkki, $salasana) {
-        $query = DB::connection()->prepare('SELECT * FROM Kayttaja '
-                . 'WHERE nimimerkki = :nimimerkki AND salasana = :salasana LIMIT 1');
+        $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE nimimerkki = :nimimerkki AND salasana = :salasana LIMIT 1');
 //        $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE nimimerkki = \'Doku\' '
 //                . 'AND salasana = \'alkkis\' LIMIT 1');
         $query->execute(array('nimimerkki' => $nimimerkki, 'salasana' => $salasana));
