@@ -12,10 +12,10 @@ class UserController extends BaseController {
         $params = $_POST;
         $user = User::authenticate($params['nimimerkki'], $params['salasana']);
         if (!$user) {
-            View::make('login.html', array('error' => 'Väärä sdfgfdgfdgdfgfdgkäyttäjätunnus tai salasana!', 'nimimerkki' => $params['nimimerkki']));
-        } else {
+            View::make('login.html', array('error' => 'Väärä sdf tai salasana!', 'nimimerkki' => $params['nimimerkki']));
+            } else {
             $_SESSION['user'] = $user->id;
-            Redirect::to('/home', array('message' => 'Tervetuloa takaisin ' . '!'));
+            Redirect::to('/home', array('message' => 'Tervetuloa takaisin '. $user->nimimerkki . '!'));
         }
     }
 
