@@ -66,15 +66,13 @@ class User extends BaseModel {
 
     public static function authenticate($nimimerkki, $salasana) {
         $query = DB::connection()->prepare('SELECT * FROM Kayttaja '
-                . 'WHERE nimimerkki = :nimimerkki AND salasana = :salasana '
-                . 'LIMIT 1', array('nimimerkki' => $nimimerkki, 'salasana' => $salasana));
+                . 'WHERE nimimerkki = :nimimerkki AND salasana = :salasana LIMIT 1');
 //        $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE nimimerkki = \'Doku\' '
 //                . 'AND salasana = \'alkkis\' LIMIT 1');
-        $query->execute();
+        $query->execute(array('nimimerkki' => $nimimerkki, 'salasana' => $salasana));
         $row = $query->fetch();
         Kint::dump($row);
         if ($row) {
-            // Käyttäjä löytyi, palautetaan löytynyt käyttäjä oliona
             $user = new User(array(
                 'id' => $row['id'],
                 'nimimerkki' => $row['nimimerkki'],
@@ -83,7 +81,6 @@ class User extends BaseModel {
             ));
             return $user;
         } else {
-            // Käyttäjää ei löytynyt, palautetaan null
             return null;
         }
     }
