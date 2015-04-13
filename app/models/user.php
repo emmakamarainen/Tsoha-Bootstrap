@@ -6,7 +6,7 @@ class User extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validate_nimimerkki, validate_salasana');
+        $this->validators = array('validate_nimimerkki', 'validate_salasana');
     }
 
     public static function find($id) {
@@ -27,17 +27,49 @@ class User extends BaseModel {
         return null;
     }
 
-    public static function destroy($id) {
-        $user = new User(array('id' => $id));
-        $user->destroy();
-        Redirect::to('/', array('message' => 'Poistettu.'));
+    public static function all() {
+        $query = DB::connection()->prepare('SELECT * FROM Kayttaja');
+        $query->execute();
+        $rows = $query->fetchAll();
+        $users = array();
+
+        foreach ($rows as $row) {
+            $users[] = new User(array(
+                'id' => $row['id'],
+                'nimimerkki' => $row['nimimerkki'],
+                'salasana' => $row['salasana'],
+                'yllapitaja' => $row['yllapitaja']
+            ));
+        }
+        return $users;
+    }
+
+    public function save() {
+        $query = DB::connection()->prepare('INSERT INTO Kayttaja (nimimerkki, salasana),'
+                . 'VALUES (:nimimerkki, :salasana) RETURNING id');
+        $query->execute(array('nimimerkki' => $this->nimimerkki, 'salasana' => $this->salasana));
+        $row = $query->fetch();
+        $this->id = $row['id'];
+    }
+
+    public function destroy() {
+        $query = DB::connection()->prepare('DELETE FROM Kayttaja WHERE id=:id');
+        $query->execute(array('id' => $this->id));
+    }
+
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE Kayttaja SET nimimerkki = :nimimerkki, '
+                . 'salasana = :salasana WHERE id=:id');
+        $query->execute(array('id' => $this->id, 'nimimerkki' => $this->nimimerkki,
+            'salasana' => $this->salasana));
     }
 
     public static function authenticate($nimimerkki, $salasana) {
-//        $query = DB::connection()->prepare('SELECT * FROM Kayttaja '
-//                . 'WHERE nimimerkki = :nimimerkki AND salasana = :salasana '
-//                . 'LIMIT 1', array('nimimerkki' => 'Doku', 'salasana' => 'alkkis'));
-        $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE nimimerkki = \'Doku\' AND salasana = \'alkkis\' LIMIT 1');
+        $query = DB::connection()->prepare('SELECT * FROM Kayttaja '
+                . 'WHERE nimimerkki = :nimimerkki AND salasana = :salasana '
+                . 'LIMIT 1', array('nimimerkki' => $nimimerkki, 'salasana' => $salasana));
+//        $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE nimimerkki = \'Doku\' '
+//                . 'AND salasana = \'alkkis\' LIMIT 1');
         $query->execute();
         $row = $query->fetch();
         Kint::dump($row);
@@ -76,6 +108,11 @@ class User extends BaseModel {
             $errors[] = 'Salasanan pituuden tulee olla vähintään viisi merkkiä!';
         }
         return $errors;
+    }
+
+    public static function anna_oikeudet() {
+        $query = DB::connection()->prepare('UPDATE Kayttaja SET yllapitaja = TRUE WHERE id=:id');
+        $query->execute(array('id' => $this->id, 'yllapitaja' => $this->yllapitaja));
     }
 
 }

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+{% import "macros/forms.html" as forms %}
+
+<h1>Käyttäjätiedot</h1>
+
+<dl>
+    <dt> Nimimerkki: </dt>
+    <dd> {{user.nimimerkki}}</dd>
+    <dt> Salasana:</dt>
+    <dd> {{user.salasana}}</dd>
+</dl>
+
+<form method="post" action="{{base_path}}/user/{{user.id}}/destroy" class="destroy-form" 
+      data-confirm="Oletko varma, että haluat poistaa käyttäjätunnuksen?">
+    {{forms.destroy_button("#{base_path}/user/#{user.id}/destroy")}}
+</form>
+{% endblock %}

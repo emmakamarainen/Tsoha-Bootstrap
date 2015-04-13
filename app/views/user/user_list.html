@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+{% import "macros/forms.html" as forms %}
+
+<h1>Käyttäjät</h1>
+Vain ylläpitäjälle näkyvä sivu.
+
+<table class="table table-condensed">
+    <thead>
+        <tr class="success">
+            <th>Nimi</th> 
+            <th>Yllapitaja</th> 
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td><a href="{{base_path}}/user/{{user.id}}">{{user.nimimerkki}}</a></td>
+            <td>{{user.yllapitaja}}</td>            
+            <th>{{forms.edit_button("#{base_path}/user/#{user.id}/edit")}}</th>
+            <th><a class="btn btn-default btn-sm" href="{{base_path}}/user/{{user.id}}/edit">Anna oikeudet</a></th>
+        </tr>   
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

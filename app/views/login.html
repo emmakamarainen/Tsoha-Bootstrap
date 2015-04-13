@@ -12,14 +12,6 @@
 </div>
 {% endif %}
 
-<div class="alert alert-danger">
-    <ul>
- 
-        <li>{{error}}</li>
-      
-    </ul>
-</div>
-
 <!-- Kaikki lomakkeen elementit form-tagin sisään -->
 <form method="post" action="{{base_path}}/login">
     <!-- Tekstikenttä käyttäjätunnukselle -->
@@ -33,7 +25,10 @@
         <label>Salasana</label>
         <input type="password" class="form-control" name="salasana">
     </div>
-
-    <button type="submit" class="btn btn-success">Kirjaudu sisään</button>
+    <p>
+        <button type="submit" class="btn btn-success">Kirjaudu sisään</button>
+        <a href="{{base_path}}/user_new" class="btn btn-success">Rekisteröidy!</a>
+    </p>
 </form>
+
 {% endblock %}

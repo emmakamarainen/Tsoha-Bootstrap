@@ -20,13 +20,16 @@
 
 {% for aine in aineet%}
 <dl class="dl-horizontal">
-    <dt> X cl</dt>
+
     <dd> {{aine.ainesosa}}</dd>
-    <dt> X cl</dt>
+
     <dd> {{aine.ainesosa}}</dd>
-    <dt> X cl</dt>
+
     <dd> {{aine.ainesosa}}</dd>
 </dl>
 {%endfor%}
-{{forms.destroy_button("#{base_path}/drink/#{juoma.id}/destroy")}}
+<form method="post" action="{{base_path}}/drink/{{juoma.id}}/destroy" class="destroy-form" 
+      data-confirm="Oletko varma, että haluat poistaa juoman?">
+    {{forms.destroy_button("#{base_path}/drink/#{juoma.id}/destroy")}}
+</form>
 {% endblock %}
