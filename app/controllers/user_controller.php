@@ -13,24 +13,28 @@ class UserController extends BaseController {
         $user = User::authenticate($params['nimimerkki'], $params['salasana']);
         if (!$user) {
             View::make('login.html', array('error' => 'Väärä sdf tai salasana!', 'nimimerkki' => $params['nimimerkki']));
-            } else {
+        } else {
             $_SESSION['user'] = $user->id;
             Redirect::to('/home', array('message' => 'Tervetuloa takaisin '. $user->nimimerkki . '!'));
         }
     }
 
-    public static function user_show($id) {
+    public static function user_show() {
+        $id = $_SESSION['user'];        
         $user = User::find($id);
         View::make('user/user_show.html', array('user' => $user));
     }
 
     public static function edit($id) {
+//        $id = $_SESSION['user'];
         $user = User::find($id);
         View::make('user/user_edit.html', array('user' => $user));
     }
 
     public static function update($id) {
-        $params = $_POST;
+//        $id = $_SESSION['user'];
+        $user = User::find($id);
+        $params = $_POST;       
         $attributes = array(
             'id' => $id,
             'nimimerkki' => $params['nimimerkki'],
@@ -64,7 +68,7 @@ class UserController extends BaseController {
         $attributes = array(
             'nimimerkki' => $params['nimimerkki'],
             'salasana' => $params['salasana'],
-//            'yllapitaja'=> $params['yllapitaja'],
+            'yllapitaja'=> 0
         );
 
         $user = new User($attributes);

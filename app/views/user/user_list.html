@@ -20,8 +20,8 @@ Vain ylläpitäjälle näkyvä sivu.
         <tr>
             <td><a href="{{base_path}}/user/{{user.id}}">{{user.nimimerkki}}</a></td>
             <td>{{user.yllapitaja}}</td>            
-            <th>{{forms.edit_button("#{base_path}/user/#{user.id}/edit")}}</th>
-            <th><a class="btn btn-default btn-sm" href="{{base_path}}/user/{{user.id}}/edit">Anna oikeudet</a></th>
+            <th>{{forms.edit_button("#{base_path}/user/#{user.id}/user_edit")}}</th>
+            <th><a class="btn btn-default btn-sm" href="{{base_path}}/user/{{user.id}}/user_edit">Anna oikeudet</a></th>
         </tr>   
         {% endfor %}
     </tbody>

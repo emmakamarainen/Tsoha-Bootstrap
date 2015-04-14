@@ -10,9 +10,8 @@ class User extends BaseModel {
     }
 
     public static function find($id) {
-        $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE nimimerkki = :nimimerkki '
-                . 'AND salasana = :salasana LIMIT 1', array('id' => $id));
-        $query->execute();
+        $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE id = :id LIMIT 1');
+        $query->execute(array('id' => $id));
         $row = $query->fetch();
 
         if ($row) {
@@ -70,7 +69,7 @@ class User extends BaseModel {
 //                . 'AND salasana = \'alkkis\' LIMIT 1');
         $query->execute(array('nimimerkki' => $nimimerkki, 'salasana' => $salasana));
         $row = $query->fetch();
-        Kint::dump($row);
+        //Kint::dump($row);
         if ($row) {
             $user = new User(array(
                 'id' => $row['id'],

@@ -2,7 +2,7 @@
 {% block content %}
 {% import "macros/forms.html" as forms %}
 
-<h1>Muokkaa käyttäjätietoja {{user.nimimerkki}}</h1>
+<h1>Muokkaa käyttäjätietoja {{user_logged_in.nimimerkki}}</h1>
 {% if errors %}
 <div class="alert alert-danger">
     <ul>
@@ -13,7 +13,7 @@
 </div>
 {% endif %}
 
-<form method="post" action="{{base_path}}/user/{{user.id}}/edit" class="form-horizontal">
+<form method="post" action="{{base_path}}/user/{{user_logged_in.id}}/user_edit" class="form-horizontal">
 
     <div class="form-group">
         <label  class="col-sm-2 control-label">Nimi</label>
@@ -34,7 +34,7 @@
         </div>
     </div>
     <div class="form-group">
-        {{forms.save_button("#{base_path}/user/#{user.id}/save")}}
+        {{forms.save_button("#{base_path}/user/#{user_logged_in.id}/save")}}
     </div>
 </form>
 

@@ -14,7 +14,7 @@ $routes->get('/', function() {
     JuomatController::home();
 });
 
-$routes->get('/search', function() {
+$routes->get('/drink/drink_search', function() {
     JuomatController::search();
 });
 
@@ -46,7 +46,6 @@ $routes->get('/drink_new', function() {
     JuomatController::drink_new();
 });
 
-
 $routes->post('/drink/:id/destroy', function($id) {
     JuomatController::destroy($id);
 });
@@ -61,11 +60,11 @@ $routes->post('/login', function() {
     UserController::handle_login();
 });
 
-$routes->get('/user/:id/edit', function($id) {
+$routes->get('/user/:id/user_edit', function($id) {
     UserController::edit($id);
 });
 
-$routes->post('/user/:id/edit', function($id) {
+$routes->post('/user/:id/user_edit', function($id) {
     UserController::update($id);
 });
 
@@ -96,8 +95,6 @@ $routes->post('/user_new', function() {
 $routes->get('/user_new', function() {
     UserController::user_new();
 });
-
-
 
 /* AineetController */
 

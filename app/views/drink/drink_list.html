@@ -5,6 +5,7 @@
 <h1>Drinkkien ohjeet</h1>
 Kirjaudu sisään nähdäksesi drinkkien ohjeet.
 
+{% if user_logged_in %}
 <p>   
     <a href="{{base_path}}/drink_new" class="btn btn-success">Lisää drinkki</a>
     <a href="{{base_path}}/drink_new" class="btn btn-success">Ehdota drinkkiä</a>
@@ -35,5 +36,5 @@ Kirjaudu sisään nähdäksesi drinkkien ohjeet.
         {% endfor %}
     </tbody>
 </table>
-
+{% endif %}
 {% endblock %}
