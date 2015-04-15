@@ -6,9 +6,11 @@
 
 <dl>
     <dt> Nimimerkki: </dt>
-    <dd> {{user_logged_in.nimimerkki}}</dd>
+    <dd> {{user.nimimerkki}}</dd>
     <dt> Salasana:</dt>
     <dd> {{user.salasana}}</dd>
+    <dt> Yllapitaja:</dt>
+    <dd> {{user.yllapitaja}}</dd>
 </dl>
 
 <form method="post" action="{{base_path}}/user/{{user.id}}/destroy" class="destroy-form" 

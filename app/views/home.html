@@ -7,11 +7,11 @@
     <a href="{{base_path}}/user/user_show" class="btn btn-success">Käyttäjätiedot</a>
     <a href="{{base_path}}/user/{{user_logged_in.id}}/user_edit" class="btn btn-success">Muokkaa tietoja</a>
 </p> 
-{% endif %}
-
+{% else %}
 <h1>Tervetuloa Drinkkiarkistoon!</h1>
 <p> 
     <a href="{{base_path}}/login" class="btn btn-success">Kirjaudu sisään</a>
     <a href="{{base_path}}/user_new" class="btn btn-success">Rekisteröidy!</a>
 </p> 
+{% endif %}
 {% endblock %}

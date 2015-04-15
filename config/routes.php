@@ -4,6 +4,10 @@ $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
 });
 
+function check_logged_in(){
+  JuomatController::check_logged_in();
+}
+
 /* JuomatController */
 
 $routes->get('/home', function() {
@@ -14,39 +18,39 @@ $routes->get('/', function() {
     JuomatController::home();
 });
 
-$routes->get('/drink/drink_search', function() {
+$routes->get('/drink/drink_search','check_logged_in', function() {
     JuomatController::search();
 });
 
-$routes->get('/drink/:id/edit', function($id) {
+$routes->get('/drink/:id/edit','check_logged_in', function($id) {
     JuomatController::edit($id);
 });
 
-$routes->post('/drink/:id/edit', function($id) {
+$routes->post('/drink/:id/edit','check_logged_in', function($id) {
     JuomatController::update($id);
 });
 
-$routes->get('/drink_list', function() {
+$routes->get('/drink_list','check_logged_in', function() {
     JuomatController::drink_list();
 });
 
-$routes->get('/drink/:id', function($id) {
+$routes->get('/drink/:id','check_logged_in', function($id) {
     JuomatController::drink_show($id);
 });
 
-$routes->post('/drink', function() {
+$routes->post('/drink','check_logged_in', function() {
     JuomatController::store();
 });
 
-$routes->post('/drink_new', function() {
+$routes->post('/drink_new','check_logged_in', function() {
     JuomatController::store();
 });
 
-$routes->get('/drink_new', function() {
+$routes->get('/drink_new','check_logged_in', function() {
     JuomatController::drink_new();
 });
 
-$routes->post('/drink/:id/destroy', function($id) {
+$routes->post('/drink/:id/destroy','check_logged_in', function($id) {
     JuomatController::destroy($id);
 });
 
@@ -64,8 +68,16 @@ $routes->get('/user/:id/user_edit', function($id) {
     UserController::edit($id);
 });
 
-$routes->post('/user/:id/user_edit', function($id) {
+$routes->post('/user/:id/user_edit',function($id) {
     UserController::update($id);
+});
+
+$routes->get('/user/:id/user_rights', function($id) {
+    UserController::edit_rights($id);
+});
+
+$routes->post('/user/:id/user_rights',function($id) {
+    UserController::update_rights($id);
 });
 
 $routes->get('/user/:id', function($id) {
@@ -101,3 +113,11 @@ $routes->get('/user_new', function() {
 $routes->get('/aine_list', function() {
     AineetController::aine_list();
 });
+
+/* rekisteröityminen
+ * yllapitäjän näkymät & oikeudet
+ * juomien ja ainesosien yhteys
+ * haku
+ * (ylläpitäjä ei pysty muokkaamaan käyttäjien tietoja)
+ * (käyttäjäselailussa näkyy vain kirjautuneen tiedot)
+ * */

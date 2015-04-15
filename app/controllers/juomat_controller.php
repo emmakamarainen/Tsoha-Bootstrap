@@ -7,11 +7,13 @@ require 'app/models/user.php';
 class JuomatController extends BaseController {
 
     public static function drink_list() {
+        self::check_logged_in();
         $juomat = Juoma::all();
         View::make('drink/drink_list.html', array('juomat' => $juomat));
     }
 
     public static function store() {
+        self::check_logged_in();
         $params = $_POST;
         
         $attributes = array(
@@ -34,6 +36,7 @@ class JuomatController extends BaseController {
     }
 
     public static function drink_new() {
+        self::check_logged_in();
         View::make('drink/drink_new.html');
     }
 
@@ -42,24 +45,28 @@ class JuomatController extends BaseController {
     }
 
     public static function home() {
-        View::make('home.html', array('userid' => $_SESSION['user']));
+        View::make('home.html');
     }
 
     public static function search() {
+        self::check_logged_in();
         View::make('drink/drink_search.html');
     }
 
     public static function drink_show($id) {
+        self::check_logged_in();
         $juoma = Juoma::find($id);
         View::make('drink/drink_show.html', array('juoma' => $juoma));
     }
 
     public static function edit($id) {
+        self::check_logged_in();
         $juoma = Juoma::find($id);
         View::make('drink/drink_edit.html', array('juoma' => $juoma));
     }
 
     public static function update($id) {
+        self::check_logged_in();
         $params = $_POST;
         $attributes = array(
             'id' => $id,
@@ -82,12 +89,14 @@ class JuomatController extends BaseController {
     }
 
     public static function destroy($id) {
+        self::check_logged_in();
         $juoma = new Juoma(array('id' => $id));
         $juoma->destroy();
         Redirect::to('/drink_list', array('message' => 'Poistettu.'));
     }
 
     public static function drink_name($nimi) {
+        self::check_logged_in();
         $juomat = Juoma::hae_juomannimi($nimi);
         View::make('drink/drink_list.html', array('juomat' => $juomat));
     }

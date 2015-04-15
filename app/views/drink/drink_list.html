@@ -3,7 +3,7 @@
 {% import "macros/forms.html" as forms %}
 
 <h1>Drinkkien ohjeet</h1>
-Kirjaudu sisään nähdäksesi drinkkien ohjeet.
+
 
 {% if user_logged_in %}
 <p>   
@@ -36,5 +36,7 @@ Kirjaudu sisään nähdäksesi drinkkien ohjeet.
         {% endfor %}
     </tbody>
 </table>
+{% else %}
+Kirjaudu sisään nähdäksesi drinkkien ohjeet.
 {% endif %}
 {% endblock %}

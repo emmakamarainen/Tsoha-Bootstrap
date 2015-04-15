@@ -25,15 +25,17 @@ class UserController extends BaseController {
         View::make('user/user_show.html', array('user' => $user));
     }
 
-    public static function edit($id) {
-//        $id = $_SESSION['user'];
+    public static function edit($id) {      
         $user = User::find($id);
         View::make('user/user_edit.html', array('user' => $user));
     }
+    
+    public static function edit_rights($id) {      
+        $user = User::find($id);
+        View::make('user/user_rights.html', array('user' => $user));
+    }
 
     public static function update($id) {
-//        $id = $_SESSION['user'];
-        $user = User::find($id);
         $params = $_POST;       
         $attributes = array(
             'id' => $id,
@@ -51,6 +53,22 @@ class UserController extends BaseController {
             Redirect::to('/user/' . $user->id, array('message' => 'Muokkaus onnistui.'));
         }
     }
+    
+    public static function update_rights($id) {        
+        $params = $_POST;
+        $attributes = array(
+            'id' => $id,
+            'yllapitaja' => $params['yllapitaja'],
+        );
+        $user = new User($attributes);
+        $errors = $user->errors();
+        if (count($errors) > 0) {
+            View::make('user/user_rights.html', array('errors' => $errors, 'attributes' => $attributes));
+        } else {
+            $user->update_rights();
+            Redirect::to('/user/' . $user->id, array('message' => 'Muokkaus onnistui.'));
+        }
+    }
 
     public static function destroy($id) {
         $user = new User(array('id' => $id));
@@ -63,7 +81,7 @@ class UserController extends BaseController {
         View::make('user/user_list.html', array('users' => $users));
     }
 
-    public static function store() {
+    public static function store() {       
         $params = $_POST;
         $attributes = array(
             'nimimerkki' => $params['nimimerkki'],
@@ -81,23 +99,13 @@ class UserController extends BaseController {
         }
     }
 
-    public static function user_new() {
+    public static function user_new() {     
         View::make('user/user_new.html');
     }
 
-    public static function update_oikeudet($id) {
-        $params = $_POST;
-        $attributes = array(
-            'id' => $id,
-            'yllapitaja' => $params['yllapitaja'],
-        );
-        // Alustus
-        $user = new User($attributes);
-        $user->update();
-        Redirect::to('/user/user_list' . $user->id, array('message' => 'Muokkaus onnistui.'));
-    }
+    
 
-    public static function logout() {
+    public static function logout() {         
         $_SESSION['user'] = null;
         Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
     }

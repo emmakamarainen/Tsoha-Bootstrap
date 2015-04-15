@@ -44,9 +44,9 @@ class User extends BaseModel {
     }
 
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Kayttaja (nimimerkki, salasana),'
-                . 'VALUES (:nimimerkki, :salasana) RETURNING id');
-        $query->execute(array('nimimerkki' => $this->nimimerkki, 'salasana' => $this->salasana));
+        $query = DB::connection()->prepare('INSERT INTO Kayttaja (nimimerkki, salasana, yllapitaja),'
+                . 'VALUES (:nimimerkki, :salasana, :yllapitaja) RETURNING id');
+        $query->execute(array('nimimerkki' => $this->nimimerkki, 'salasana' => $this->salasana, 'yllapitaja' => $this->yllapitaja));
         $row = $query->fetch();
         $this->id = $row['id'];
     }
@@ -57,10 +57,13 @@ class User extends BaseModel {
     }
 
     public function update() {
-        $query = DB::connection()->prepare('UPDATE Kayttaja SET nimimerkki = :nimimerkki, '
-                . 'salasana = :salasana WHERE id=:id');
-        $query->execute(array('id' => $this->id, 'nimimerkki' => $this->nimimerkki,
-            'salasana' => $this->salasana));
+        $query = DB::connection()->prepare('UPDATE Kayttaja SET nimimerkki = :nimimerkki, salasana = :salasana WHERE id=:id');
+        $query->execute(array('id' => $this->id, 'nimimerkki' => $this->nimimerkki, 'salasana' => $this->salasana));
+    }   
+    
+    public function update_rights() {
+        $query = DB::connection()->prepare('UPDATE Kayttaja SET yllapitaja = :yllapitaja, WHERE id=:id');
+        $query->execute(array('id' => $this->id, 'yllapitaja' => $this->yllapitaja));
     }
 
     public static function authenticate($nimimerkki, $salasana) {
