@@ -51,6 +51,14 @@ class JuomatController extends BaseController {
     public static function search() {
         self::check_logged_in();
         View::make('drink/drink_search.html');
+    }      
+    
+    public static function search_name() {
+        self::check_logged_in();
+        $params = $_POST;
+        $juomat = Juoma::hae_juomanimi($params['nimi']);
+        Kint__dump($juomat);
+        View::make('drink/drink_searchlist.html', array('juomat' => $juomat));
     }
 
     public static function drink_show($id) {
@@ -95,9 +103,9 @@ class JuomatController extends BaseController {
         Redirect::to('/drink_list', array('message' => 'Poistettu.'));
     }
 
-    public static function drink_name($nimi) {
-        self::check_logged_in();
-        $juomat = Juoma::hae_juomannimi($nimi);
-        View::make('drink/drink_list.html', array('juomat' => $juomat));
-    }
+//    public static function drink_name($nimi) {
+//        self::check_logged_in();
+//        $juomat = Juoma::hae_juomannimi($nimi);
+//        View::make('drink/drink_list.html', array('juomat' => $juomat));
+//    }
 }

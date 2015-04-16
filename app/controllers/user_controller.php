@@ -10,9 +10,11 @@ class UserController extends BaseController {
 
     public static function handle_login() {
         $params = $_POST;
+//        Kint::dump($params);
         $user = User::authenticate($params['nimimerkki'], $params['salasana']);
         if (!$user) {
-            View::make('login.html', array('error' => 'Väärä sdf tai salasana!', 'nimimerkki' => $params['nimimerkki']));
+            View::make('login.html', array('error' => 'Väärä nimimerkki tai salasana!', 
+                'nimimerkki' => $params['nimimerkki']));
         } else {
             $_SESSION['user'] = $user->id;
             Redirect::to('/home', array('message' => 'Tervetuloa takaisin '. $user->nimimerkki . '!'));
@@ -93,7 +95,10 @@ class UserController extends BaseController {
         $errors = $user->errors();
         if (count($errors) == 0) {
             $user->save();
-            Redirect::to('/user/' . $user->id, array('message' => 'Käyttäjätunnus lisätty!'));
+//            Kint::dump($user);
+            $_SESSION['user'] = $user->id;
+            Redirect::to('/home', array('message' => 'Tervetuloa! '. $user->nimimerkki . '!'));
+//            Redirect::to('/user/' . $user->id, array('message' => 'Käyttäjätunnus lisätty!'));
         } else {
             View::make('user/user_new.html', array('errors' => $errors, 'attributes' => $attributes));
         }
@@ -102,9 +107,7 @@ class UserController extends BaseController {
     public static function user_new() {     
         View::make('user/user_new.html');
     }
-
-    
-
+   
     public static function logout() {         
         $_SESSION['user'] = null;
         Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));

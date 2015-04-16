@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+{% import "macros/forms.html" as forms %}
 
 <h1>Ainesosat</h1>
 {%if user_logged_in %}
@@ -23,6 +24,8 @@
 <p/>
 {% else %}
 Kirjaudu sisään nähdäksesi ainelistan.
+<p>
+    <a href="{{base_path}}/login" class="btn btn-success">Kirjaudu sisään</a>
+<p/>
 {% endif %}
-
 {% endblock %}

@@ -17,4 +17,15 @@ class BaseController {
         }
     }
 
+    public static function check_admin() {
+        if (isset($_SESSION['user'])) {
+            $user_id = $_SESSION['user'];
+            $user = User::find($user_id);
+            if ($user->yllapitaja == TRUE) {
+                return $user;
+            }
+            return null;
+        }
+    }
+
 }

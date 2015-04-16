@@ -22,6 +22,10 @@ $routes->get('/drink/drink_search','check_logged_in', function() {
     JuomatController::search();
 });
 
+//$routes->post('/drink/drink_search','check_logged_in', function() {
+//    JuomatController::search_name();
+//});
+
 $routes->get('/drink/:id/edit','check_logged_in', function($id) {
     JuomatController::edit($id);
 });
@@ -114,10 +118,12 @@ $routes->get('/aine_list', function() {
     AineetController::aine_list();
 });
 
-/* rekisteröityminen
+/* rekisteröitymisen jälkeen on kirjautunut
+ * käyttäjän poisto poistamatta itseään 
+ * (käyttäjäselailussa näkyy vain kirjautuneen tiedot)
  * yllapitäjän näkymät & oikeudet
  * juomien ja ainesosien yhteys
  * haku
  * (ylläpitäjä ei pysty muokkaamaan käyttäjien tietoja)
- * (käyttäjäselailussa näkyy vain kirjautuneen tiedot)
+ * 
  * */

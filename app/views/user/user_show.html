@@ -3,7 +3,7 @@
 {% import "macros/forms.html" as forms %}
 
 <h1>Käyttäjätiedot</h1>
-
+{%if user_logged_in %}
 <dl>
     <dt> Nimimerkki: </dt>
     <dd> {{user.nimimerkki}}</dd>
@@ -17,4 +17,10 @@
       data-confirm="Oletko varma, että haluat poistaa käyttäjätunnuksen?">
     {{forms.destroy_button("#{base_path}/user/#{user.id}/destroy")}}
 </form>
+{% else %}
+Kirjaudu sisään nähdäksesi käyttäjätietosi.
+<p>
+    <a href="{{base_path}}/login" class="btn btn-success">Kirjaudu sisään</a>
+<p/>
+{% endif %}
 {% endblock %}

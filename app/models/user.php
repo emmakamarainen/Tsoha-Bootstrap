@@ -44,9 +44,10 @@ class User extends BaseModel {
     }
 
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Kayttaja (nimimerkki, salasana, yllapitaja),'
+        $query = DB::connection()->prepare('INSERT INTO Kayttaja (nimimerkki, salasana, yllapitaja)'
                 . 'VALUES (:nimimerkki, :salasana, :yllapitaja) RETURNING id');
-        $query->execute(array('nimimerkki' => $this->nimimerkki, 'salasana' => $this->salasana, 'yllapitaja' => $this->yllapitaja));
+        $query->execute(array('nimimerkki' => $this->nimimerkki, 'salasana' => $this->salasana,
+            'yllapitaja' => $this->yllapitaja));
         $row = $query->fetch();
         $this->id = $row['id'];
     }
@@ -59,8 +60,8 @@ class User extends BaseModel {
     public function update() {
         $query = DB::connection()->prepare('UPDATE Kayttaja SET nimimerkki = :nimimerkki, salasana = :salasana WHERE id=:id');
         $query->execute(array('id' => $this->id, 'nimimerkki' => $this->nimimerkki, 'salasana' => $this->salasana));
-    }   
-    
+    }
+
     public function update_rights() {
         $query = DB::connection()->prepare('UPDATE Kayttaja SET yllapitaja = :yllapitaja, WHERE id=:id');
         $query->execute(array('id' => $this->id, 'yllapitaja' => $this->yllapitaja));
@@ -72,7 +73,7 @@ class User extends BaseModel {
 //                . 'AND salasana = \'alkkis\' LIMIT 1');
         $query->execute(array('nimimerkki' => $nimimerkki, 'salasana' => $salasana));
         $row = $query->fetch();
-        //Kint::dump($row);
+        Kint::dump($row);
         if ($row) {
             $user = new User(array(
                 'id' => $row['id'],
@@ -108,8 +109,27 @@ class User extends BaseModel {
         return $errors;
     }
 
+    public static function check_admin($id) {
+//        $id = $_SESSION['user'];
+        $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE id = :id LIMIT 1');
+        $query->execute(array('id' => $id));
+        $row = $query->fetch();
+        if ($row) {
+            $user = new User(array(
+                'id' => $row['id'],
+                'nimimerkki' => $row['nimimerkki'],
+                'salasana' => $row['salasana'],
+                'yllapitaja' => $row['yllapitaja'],
+            ));
+        }
+        if ($user->yllapitaja == 1) {
+            Kint::dump($user);
+            return $user;
+        }
+    }
+
     public static function anna_oikeudet() {
-        $query = DB::connection()->prepare('UPDATE Kayttaja SET yllapitaja = TRUE WHERE id=:id');
+        $query = DB::connection()->prepare('UPDATE Kayttaja SET yllapitaja = 1 WHERE id=:id');
         $query->execute(array('id' => $this->id, 'yllapitaja' => $this->yllapitaja));
     }
 
