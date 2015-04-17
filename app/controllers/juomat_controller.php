@@ -14,12 +14,12 @@ class JuomatController extends BaseController {
 
     public static function store() {
         self::check_logged_in();
+        $dt = new DateTime();
+        echo $dt->format('Y-m-d H:i:s');
         $params = $_POST;
-        
         $attributes = array(
             'nimi' => $params['nimi'],
-//            'lisayspvm' => $params['lisayspvm'],
-            'kayttaja_id' => 1,
+            'lisayspvm' => $dt,
             //'ainesosat' => $params['ainesosat'],
             'juomalaji' => $params['juomalaji'],
             'kuvaus' => $params['kuvaus'],
@@ -51,13 +51,13 @@ class JuomatController extends BaseController {
     public static function search() {
         self::check_logged_in();
         View::make('drink/drink_search.html');
-    }      
-    
+    }
+
     public static function search_name() {
         self::check_logged_in();
         $params = $_POST;
         $juomat = Juoma::hae_juomanimi($params['nimi']);
-        Kint__dump($juomat);
+//        Kint__dump($juomat);
         View::make('drink/drink_searchlist.html', array('juomat' => $juomat));
     }
 
@@ -75,12 +75,10 @@ class JuomatController extends BaseController {
 
     public static function update($id) {
         self::check_logged_in();
-        $params = $_POST;
+        $params = $_POST;       
         $attributes = array(
             'id' => $id,
             'nimi' => $params['nimi'],
-//            'lisayspvm' => date[yy-mm-dd],
-            'kayttaja_id' => 1,
 //            'ainesosat' => $params['ainesosat'],
             'juomalaji' => $params['juomalaji'],
             'kuvaus' => $params['kuvaus']

@@ -118,11 +118,11 @@ $routes->get('/aine_list', function() {
     AineetController::aine_list();
 });
 
-/* rekisteröitymisen jälkeen on kirjautunut
+/* juomien ja ainesosien yhteys
  * käyttäjän poisto poistamatta itseään 
  * (käyttäjäselailussa näkyy vain kirjautuneen tiedot)
  * yllapitäjän näkymät & oikeudet
- * juomien ja ainesosien yhteys
+ * 
  * haku
  * (ylläpitäjä ei pysty muokkaamaan käyttäjien tietoja)
  * 

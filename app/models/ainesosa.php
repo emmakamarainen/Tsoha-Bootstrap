@@ -22,6 +22,21 @@ class Ainesosa extends BaseModel {
         }
         return $aineet;
     }
+    
+//    Drinkin ID:llä etsitään juomaaineyhteys-taulusta ainesosien ID:t.
+    public static function drinkkien_ainesosat($id) {
+        $query = DB::connection()->prepare('SELECT ainesosa_id FROM Juomaaineyhteys WHERE id =:id');
+        $query->execute();
+        $rows = $query->fetchAll();
+        $aineet = array();
+        foreach ($rows as $row) {
+            $aineet[] = new Ainesosa(array(
+                'id' => $row['id'],
+                'ainesosa' => $row['ainesosa']           
+            ));
+        }
+        return $ainesosat;
+    }
 
     public static function find($id) {
         $query = DB::connection()->prepare('SELECT * FROM Ainesosat WHERE id = :id LIMIT 1');
@@ -45,7 +60,15 @@ class Ainesosa extends BaseModel {
         $this->id = $row['id'];
     }
     
-   
+    public function destroy() {
+        $query = DB::connection()->prepare('DELETE FROM Ainesosat WHERE id=:id');
+        $query->execute(array('id' => $this->id));
+    }
+
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE Ainesosat SET ainesosa = :ainesosa WHERE id=:id');
+        $query->execute(array('id' => $this->id, 'ainesosa' => $this->ainesosa));
+    }    
     
     public function validate_ainesosa() {
         $errors = array();

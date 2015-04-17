@@ -9,7 +9,6 @@ yllapitaja boolean
 
 create table Juoma(
 id serial primary key,
-kayttaja_id integer references Kayttaja(id),
 nimi varchar(50) not null,
 lisayspvm DATE not null,
 juomalaji varchar(50) not null,

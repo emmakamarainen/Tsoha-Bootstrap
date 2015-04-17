@@ -2,14 +2,14 @@
 
 class Juoma extends BaseModel {
 
-    public $id, $kayttaja_id, $nimi, $lisayspvm, $juomalaji, $kuvaus;
+    public $id, $nimi, $lisayspvm, $juomalaji, $kuvaus;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
         $this->validators = array('validate_name', 'validate_juomalaji');
     }
 
-    public static function all() {
+    public static function all() {             
         $query = DB::connection()->prepare('SELECT * FROM Juoma');
         $query->execute();
         $rows = $query->fetchAll();
@@ -18,7 +18,6 @@ class Juoma extends BaseModel {
         foreach ($rows as $row) {
             $juomat[] = new Juoma(array(
                 'id' => $row['id'],
-                'kayttaja_id' => $row['kayttaja_id'],
                 'nimi' => $row['nimi'],
                 'lisayspvm' => $row['lisayspvm'],
                 'juomalaji' => $row['juomalaji'],
@@ -36,7 +35,6 @@ class Juoma extends BaseModel {
         if ($row) {
             $juoma = new Juoma(array(
                 'id' => $row['id'],
-                'kayttaja_id' => $row['kayttaja_id'],
                 'nimi' => $row['nimi'],
                 'lisayspvm' => $row['lisayspvm'],
                 'juomalaji' => $row['juomalaji'],
@@ -48,10 +46,10 @@ class Juoma extends BaseModel {
     }
 
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Juoma (nimi, lisayspvm, kayttaja_id,'
+        $query = DB::connection()->prepare('INSERT INTO Juoma (nimi, lisayspvm,'
                 . ' juomalaji, kuvaus) VALUES (:nimi, NOW(), :lisaaja,'
                 . ' :juomalaji, :kuvaus) RETURNING id');
-        $query->execute(array('nimi' => $this->nimi, 'lisaaja' => $this->kayttaja_id,
+        $query->execute(array('nimi' => $this->nimi,
             'juomalaji' => $this->juomalaji, 'kuvaus' => $this->kuvaus));
         $row = $query->fetch();
         $this->id = $row['id'];

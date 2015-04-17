@@ -9,19 +9,15 @@ class YhteysController extends BaseController {
     public static function edit($id) {        
         $juoma = Juoma::find($id);
         $ainesosa = Ainesosa::find($id);
-        View::make('drink/drink_edit.html', array('juoma' => $juoma));
+        View::make('drink/drink_edit.html', array('juoma' => $juoma, 'ainesosa' => $ainesosa));
     }
 
     public static function update($id) {
         $params = $_POST;
         $attributes_juoma = array(
             'id' => $id,
-            'nimi' => $params['nimi'],
-//            'lisayspvm' => date[yy-mm-dd],
-            'kayttaja_id' => 1,
-//            'ainesosat' => $params['ainesosat'],
-            'juomalaji' => $params['juomalaji'],
-            'kuvaus' => $params['kuvaus']
+            'juoma_id' => $params['juoma_id'],
+            'ainesosa_id' => $params['ainesosa_id']
         );
 
         $juoma = new Juoma($attributes_juoma);

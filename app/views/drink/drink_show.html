@@ -5,8 +5,6 @@
 <h1> {{juoma.nimi}}<small> drinkkiresepti</small></h1>
 
 <dl>
-    <dt> Lisääjä: </dt>
-    <dd> {{juoma.kayttaja_id}}</dd>
     <dt> Lisäyspäivämäärä:</dt>
     <dd> {{juoma.lisayspvm}}</dd>
 </dl>
@@ -21,7 +19,7 @@
 {% for aine in aineet%}
 <dl class="dl-horizontal">
 
-    <dd> {{aine.ainesosa}}</dd>
+    <dd> {{ainesosat.ainesosa}}</dd>
 
     <dd> {{aine.ainesosa}}</dd>
 

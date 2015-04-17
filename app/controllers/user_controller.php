@@ -21,8 +21,8 @@ class UserController extends BaseController {
         }
     }
 
-    public static function user_show() {
-        $id = $_SESSION['user'];        
+    public static function user_show($id) {
+//        $id = $_SESSION['user'];        
         $user = User::find($id);
         View::make('user/user_show.html', array('user' => $user));
     }
@@ -43,7 +43,6 @@ class UserController extends BaseController {
             'id' => $id,
             'nimimerkki' => $params['nimimerkki'],
             'salasana' => $params['salasana'],
-            'yllapitaja' => $params['yllapitaja'],
         );
         // Alustus
         $user = new User($attributes);
@@ -60,7 +59,7 @@ class UserController extends BaseController {
         $params = $_POST;
         $attributes = array(
             'id' => $id,
-            'yllapitaja' => $params['yllapitaja'],
+            'yllapitaja' => TRUE,
         );
         $user = new User($attributes);
         $errors = $user->errors();

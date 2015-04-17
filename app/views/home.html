@@ -8,10 +8,6 @@
     <a href="{{base_path}}/user/user_show" class="btn btn-success">Käyttäjätiedot</a>
     <a href="{{base_path}}/user/{{user_logged_in.id}}/user_edit" class="btn btn-success">Muokkaa tietoja</a>
 </p> 
-<form method="post" action="{{base_path}}/user/{{user.id}}/destroy" class="destroy-form" 
-      data-confirm="Oletko varma, että haluat poistaa käyttäjätunnuksen?">
-    {{forms.destroy_button("#{base_path}/user/#{user.id}/destroy")}}
-</form>
 {% else %}
 <h1>Tervetuloa Drinkkiarkistoon!</h1>
 <p> 
