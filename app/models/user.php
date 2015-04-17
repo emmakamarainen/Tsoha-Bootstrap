@@ -73,7 +73,7 @@ class User extends BaseModel {
 //                . 'AND salasana = \'alkkis\' LIMIT 1');
         $query->execute(array('nimimerkki' => $nimimerkki, 'salasana' => $salasana));
         $row = $query->fetch();
-        Kint::dump($row);
+//        Kint::dump($row);
         if ($row) {
             $user = new User(array(
                 'id' => $row['id'],

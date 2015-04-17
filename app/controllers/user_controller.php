@@ -10,11 +10,11 @@ class UserController extends BaseController {
 
     public static function handle_login() {
         $params = $_POST;
-//        Kint::dump($params);
         $user = User::authenticate($params['nimimerkki'], $params['salasana']);
         if (!$user) {
-            View::make('login.html', array('error' => 'Väärä nimimerkki tai salasana!', 
-                'nimimerkki' => $params['nimimerkki']));
+//            View::make('login.html', array('error' => 'Väärä nimimerkki tai salasana!', 
+//                'nimimerkki' => $params['nimimerkki']));
+            View::make('login.html', array('message' => 'Väärä nimimerkki tai salasana!'));
         } else {
             $_SESSION['user'] = $user->id;
             Redirect::to('/home', array('message' => 'Tervetuloa takaisin '. $user->nimimerkki . '!'));
