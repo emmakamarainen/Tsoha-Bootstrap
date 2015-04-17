@@ -1,9 +1,10 @@
 # Tietokantasovelluksen esittelysivu
 
-HUOM. Kirjautuminen ei toimi vielä, jotain mystistä käy jos yrittää kirjautua jonka jälkeen koko juttu hajoaa. Eli jos sitä tahtoo kokeilla, niin kannattaa tehdä se viimeiseksi. 
+Käyttäjätunnus (ylläpitäjä): Admin
+salasana: admin
 
-Käyttäjätunnus: Doku
-salasana: alkkis
+Käyttäjätunnus: nimimerkki
+salasana: salasana
 
 Yleisiä linkkejä:
 
