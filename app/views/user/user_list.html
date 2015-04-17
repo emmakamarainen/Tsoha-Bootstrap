@@ -21,7 +21,7 @@ Vain ylläpitäjälle näkyvä sivu.
         <tr>
             <td><a href="{{base_path}}/user/{{user.id}}">{{user.nimimerkki}}</a></td>
             <td>{{user.yllapitaja}}</td>            
-            <th>{{forms.edit_button("#{base_path}/user/#{user.id}/user_edit")}}</th>
+            <th><a class="btn btn-default btn-sm" href="{{base_path}}/user/{{user.id}}/user_edit">Muokkaa</a></th>
             <th><a class="btn btn-default btn-sm" href="{{base_path}}/user/{{user.id}}/user_rights">Anna oikeudet</a></th>
         </tr>   
         {% endfor %}

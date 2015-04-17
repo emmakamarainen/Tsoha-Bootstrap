@@ -5,7 +5,7 @@
 {%if user_logged_in %}
 <h1>Tervetuloa {{user_logged_in.nimimerkki}}!</h1>
 <p> 
-    <a href="{{base_path}}/user/user_show" class="btn btn-success">Käyttäjätiedot</a>
+    <a href="{{base_path}}/user/{{user_logged_in.id}}" class="btn btn-success">Käyttäjätiedot</a>
     <a href="{{base_path}}/user/{{user_logged_in.id}}/user_edit" class="btn btn-success">Muokkaa tietoja</a>
 </p> 
 {% else %}

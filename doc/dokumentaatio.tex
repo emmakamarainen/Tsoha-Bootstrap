@@ -6,10 +6,22 @@
 \usepackage{graphicx}
 \usepackage{url}
 
+\usepackage{color}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true, % make the links colored
+    linkcolor=black, % color TOC links in blue
+    urlcolor=red, % color URLs in red
+    linktoc=all % 'all' will create links for everything in the TOC
+}
+
 
 \begin{document}
 
 \section*{Tietokantasovellus, harjoitustyö}
+
+\tableofcontents
+
 \section{Johdanto}
 
 Harjoitustyön aiheena drinkkiarkisto. Tarkoituksena on luoda drinkkireseptien hakulomake, jota käytetään www-sivulla. Lomakkeeseen kirjaudutaan sisään, ja sillä eri reseptejä voi hakea ja listata. Listauksessa reseptejä voi laittaa järjestykseen monella eri tapaa, esimerkiksi ne voi järjestää jonkin tietyn reseptin ainesosan mukaan. Resepteihin voidaan viitata monilla eri hakusanoilla, ja yhdellä hakusanalla voi saada useamman tuloksen. 
@@ -32,6 +44,7 @@ Tietokantana on PostgreSQL. Harjoitustyö toteutetaan laitoksen user--palvelimel
 %Jos edellytetään jotain sovelluskehystä tulisi sekin mainita.
 %Täytyykö käyttäjän selaimen tukea jotain tiettyä ohjelmointikieltä (esim. javascript?).
 %Edellyttääkö ohjelmisto jonkun tietyn tietokannan käyttöä vai voiko sitä vaihtaa helposti. Useimmat työt toimivat vain yhdellä kannalla.
+\newpage
 \section{Käyttäjistä}
 
 \subsection{Käyttötapauskaavio}
@@ -51,6 +64,7 @@ Ylläpitäjän pitää olla rekisteröitynyt lomakkeen käyttäjä, jolle on ann
 
 Tavallinen käyttäjä voi olla kuka tahansa sivulle kirjautunut henkilö. 
 
+\newpage
 \subsection{Käyttötapaukset}
 
 \begin{flushleft}\textbf{Ylläpitäjä\(\colon\)} \end{flushleft}
@@ -73,6 +87,7 @@ Tavallinen käyttäjä voi olla kuka tahansa sivulle kirjautunut henkilö.
 	\item Muut käyttötapaukset\(\colon\) Käyttäjätietojen muutos, käyttäjätilin poisto, käyttäjätunnuksen luominen, reseptien selaaminen, kirjautuminen
 \end{itemize}
 
+\newpage
 \section{Järjestelmän tietosisältö}
 \begin{flushleft}\textbf{Käsitekaavio} \end{flushleft}
 
@@ -84,9 +99,7 @@ Tavallinen käyttäjä voi olla kuka tahansa sivulle kirjautunut henkilö.
 			Attribuutti      & Arvojoukko        & Kuvailu\\
 			\hline
 			nimi & merkkijono, maksimissaan 50 merkkiä & Juoman nimi.\\ 
-			\hline
-			lisääjä & merkkijono, maksimissaan 50 merkkiä & Lisääjän nimimerkki.\\ 
-			\hline
+			\hline		
 			lisäyspäivämäärä & päivämäärä (date) & Päivämäärä, jolloin drinkkiohje on lisätty.\\ 
 			\hline
 			ainesosat  & merkkijono,maksimissaan 50 merkkiä & Ainekset, joista drinkki tehdään. \\
@@ -143,29 +156,40 @@ Tavallinen käyttäjä voi olla kuka tahansa sivulle kirjautunut henkilö.
 
 \section{Järjestelmän yleisrakenne}
 
-Kansiorakenne tulee melkein suoraan forkatusta reposta. "App"-kansioon on sijoitettu alakansioita, 
+Kansiorakenne tulee melkein suoraan forkatusta reposta. ”App”-kansioon on sijoitettu alakansioita, 
 joissa sijaitsevat samoilla nimillä kontrollerit, mallit ja näkymät. Näkymät on jaettu vielä alakansioihin 
 sisällön mukaan (juoma, user ja aine). Malleista (models) löytyvät pääluokat juoma, user ja aine. Dokumentaatio 
-sijaitsee kansiossa "doc". Sieltä löytyvät tähän sovellukseen liittyvät kaaviot ja ohjeet. Tietokantasovellusta
+sijaitsee kansiossa ”doc”. Sieltä löytyvät tähän sovellukseen liittyvät kaaviot ja ohjeet. Tietokantasovellusta
 tehdessä on käytetty MVC-mallia. 
 
 Sovellukseen kirjaudutaan, joka käynnistää session. Kirjautunut käyttäjä näkee listaukset ja pystyy muokkaamaan 
-drinkkiohjeita. Ylläpitäjä pystyy lisäämään kokonaisen uuden juomaohjeen sekä korottamaan tavallisen käyttäjän 
-ylläpitäjäksi. Sovelluksesta pystyy kirjautumaan ulos, jolloin palaa takaisin etusivulle. 
+drinkkiohjeita. Kirjautunut käyttäjä pystyy myös muokkaamaan omia käyttäjätietojaan tai niin halutessaan poistamaan käyttäjätunnuksensa. Ylläpitäjä pystyy lisäämään kokonaisen uuden juomaohjeen sekä korottamaan tavallisen käyttäjän 
+ylläpitäjäksi. Ylläpitäjä pystyy poistamaan muita käyttäjiä. Sovelluksesta pystyy kirjautumaan ulos, jolloin palaa takaisin etusivulle. 
 
+
+
+\newpage
 \section{Käyttöliittymä ja järjestelmän komponentit}
+\begin{flushleft}\textbf{Käyttöliittymä ja järjestelmän komponentit} \end{flushleft}
+
+\includegraphics[scale=0.8]{sivunakymat.pdf}
+
 \section{Asennustiedot}
 \section{Käynnistys- /käyttöohje}
 Harjoitustyö löytyy osoitteesta \url{http://kaem.users.cs.helsinki.fi/Drinkkiarkisto/}
 
-Sovellukseen pitää kirjautua sisään, jotta pystyy hakemaan reseptejä. Kirjautumaton käyttäjä voi selailla
-kaikkia juomareseptejä ja drinkkien ainesosia. Kirjautunut käyttäjä voi olla joko tavallinen käyttäjä tai sitten
-ylläpitäjä. Ylläpitäjä näkee enemmän sisältö sivuilla kuin tavallinen käyttäjä, muun muassa ”Lisää juoma” –
-toiminnon. Kirjautumissivulle pääsee joko etusivulta, tai sitten yläpalkin ”Kirjaudu sisään” – painikkeen
+
+Sovellukseen pitää kirjautua sisään, jotta pystyy hakemaan reseptejä. Kirjautumaton käyttäjä ei voi selailla juomareseptejä ja drinkkien ainesosia. Kirjautunut käyttäjä voi olla joko tavallinen käyttäjä tai sitten
+ylläpitäjä. Ylläpitäjä näkee enemmän sisältöä sivuilla kuin tavallinen käyttäjä, muun muassa ”Lisää juoma” –
+toiminnon.
+
+Kirjautumissivulle pääsee joko etusivulta, tai sitten yläpalkin ”Kirjaudu sisään” – painikkeen
 kautta. Yläpalkissa on myös linkit ”Drinkkiarkisto”, joka johtaa etusivulle, ”Juomat”, joka johtaa kaikkien
-juomareseptien listaussivulle, ja ”Aineet”, joka listaa juomien ainesosat omaksi listakseen.
-Ylläpitäjän näkymää pääsee katsomaan käyttäjätunnuksella ”Doku” ja sen salasanalla ”alkkis”. Tavallisen
-käyttäjän sivut aukeavat puolestaan tunnuksilla ”Olio” ja sitä vastaavalla salasanalla ”olioolio”.
+juomareseptien listaussivulle, ja ”Aineet”, joka listaa juomien ainesosat omaksi listakseen.Ylläpitäjä näkee myös listan sovellukseen käyttäjistä. Kirjautuneen käyttäjän yläpalkissa on myös käyttäjätiedot, josta näkee omat käyttäjätietonsa, ja linkki uloskirjautumiseen.
+Ylläpitäjän näkymää pääsee katsomaan käyttäjätunnuksella ”Admin” ja sen salasanalla ”admin”. Tavallisen
+käyttäjän sivut aukeavat puolestaan tunnuksilla ”nimimerkki” ja sitä vastaavalla salasanalla ”salasana”.
+
+Yläpalkissa on myös ”Haku”-kohta, se toteutetaan jos aikaa jää sen toteuttamiseen. Tarkoitus olisi hakea reseptejä ainakin niiden nimen perusteella.
 
 \section{Testaus, tunnetut bugit ja puutteet ja jatkokehitysideat}
 \section{Omat kokemukset}

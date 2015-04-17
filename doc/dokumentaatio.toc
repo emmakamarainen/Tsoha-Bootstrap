@@ -1,0 +1,15 @@
+\select@language {finnish}
+\contentsline {section}{\numberline {1}Johdanto}{1}{section.1}
+\contentsline {section}{\numberline {2}K\IeC {\"a}ytt\IeC {\"a}jist\IeC {\"a}}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}K\IeC {\"a}ytt\IeC {\"o}tapauskaavio}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}K\IeC {\"a}ytt\IeC {\"a}j\IeC {\"a}ryhm\IeC {\"a}t}{2}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}K\IeC {\"a}ytt\IeC {\"o}tapaukset}{3}{subsection.2.3}
+\contentsline {section}{\numberline {3}J\IeC {\"a}rjestelm\IeC {\"a}n tietosis\IeC {\"a}lt\IeC {\"o}}{4}{section.3}
+\contentsline {section}{\numberline {4}Relaatiokaavio}{5}{section.4}
+\contentsline {section}{\numberline {5}J\IeC {\"a}rjestelm\IeC {\"a}n yleisrakenne}{5}{section.5}
+\contentsline {section}{\numberline {6}K\IeC {\"a}ytt\IeC {\"o}liittym\IeC {\"a} ja j\IeC {\"a}rjestelm\IeC {\"a}n komponentit}{6}{section.6}
+\contentsline {section}{\numberline {7}Asennustiedot}{6}{section.7}
+\contentsline {section}{\numberline {8}K\IeC {\"a}ynnistys- /k\IeC {\"a}ytt\IeC {\"o}ohje}{6}{section.8}
+\contentsline {section}{\numberline {9}Testaus, tunnetut bugit ja puutteet ja jatkokehitysideat}{7}{section.9}
+\contentsline {section}{\numberline {10}Omat kokemukset}{7}{section.10}
+\contentsline {section}{\numberline {11}Muu dokumentaatio}{7}{section.11}
