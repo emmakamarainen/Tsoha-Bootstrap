@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+{% import "macros/forms.html" as forms %}
+
+<h1>Lisää ainesosa </h1>
+{% if errors %}
+<div class="alert alert-danger">
+    <ul>
+        {% for error in errors %}
+        <li>{{error}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<form method="post" action="{{base_path}}/drink/{{drink_id}}/ainesosa" class="form-horizontal">
+
+    <div class="form-group">
+        <label  class="col-sm-2 control-label">Ainesosa</label>
+        <div class="col-sm-10">
+            <input type="text" name= "ainesosa" class="form-control" placeholder="ainesosa">
+        </div>
+    </div>
+    <div class="form-group">
+        {{forms.save_button("#{base_path}/aine/#{ainesosa.id}/save")}}
+    </div>
+</form>
+
+{% endblock %}

@@ -12,20 +12,16 @@
     <dt>Kuvaus</dt>
     <dd>{{juoma.kuvaus}}</dd>
 </dl>
-<dl>
+
+<dl> 
     <dt>Aineosat</dt>
 </dl>
-
-{% for aine in aineet%}
-<dl class="dl-horizontal">
-
+{% for ainesosat in ainesosat%}
+<dl> 
     <dd> {{ainesosat.ainesosa}}</dd>
-
-    <dd> {{aine.ainesosa}}</dd>
-
-    <dd> {{aine.ainesosa}}</dd>
 </dl>
 {%endfor%}
+<a href="{{base_path}}/drink/{{juoma.id}}/ainesosa" class="btn btn-success">Lisää ainesosa</a>
 <form method="post" action="{{base_path}}/drink/{{juoma.id}}/destroy" class="destroy-form" 
       data-confirm="Oletko varma, että haluat poistaa juoman?">
     {{forms.destroy_button("#{base_path}/drink/#{juoma.id}/destroy")}}

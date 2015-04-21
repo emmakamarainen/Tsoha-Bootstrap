@@ -42,6 +42,8 @@ $routes->get('/drink/:id','check_logged_in', function($id) {
     JuomatController::drink_show($id);
 });
 
+
+
 $routes->post('/drink','check_logged_in', function() {
     JuomatController::store();
 });
@@ -116,6 +118,23 @@ $routes->get('/user_new', function() {
 
 $routes->get('/aine_list', function() {
     AineetController::aine_list();
+});
+
+//$routes->post('/aine/aine', function() {
+//    AineetController::store();
+//});
+//
+//$routes->post('/aine/aine_new', function() {
+//    AineetController::store();
+//});
+
+
+$routes->get('/drink/:id/ainesosa','check_logged_in', function($id) {
+    AineetController::aine_new($id);
+});
+
+$routes->post('/drink/:id/ainesosa','check_logged_in', function($id) {
+    AineetController::drink_aine_store($id);
 });
 
 /* juomien ja ainesosien yhteys

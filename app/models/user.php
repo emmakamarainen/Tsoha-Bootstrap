@@ -110,7 +110,6 @@ class User extends BaseModel {
     }
 
     public static function check_admin($id) {
-//        $id = $_SESSION['user'];
         $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));
         $row = $query->fetch();
@@ -123,7 +122,7 @@ class User extends BaseModel {
             ));
         }
         if ($user->yllapitaja == 1) {
-            Kint::dump($user);
+//            Kint::dump($user);
             return $user;
         }
     }

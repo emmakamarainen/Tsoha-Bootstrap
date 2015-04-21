@@ -1,9 +1,5 @@
 <?php
 
-require 'app/models/juoma.php';
-require 'app/models/ainesosa.php';
-require 'app/models/user.php';
-
 class JuomatController extends BaseController {
 
     public static function drink_list() {
@@ -14,13 +10,10 @@ class JuomatController extends BaseController {
 
     public static function store() {
         self::check_logged_in();
-        $dt = new DateTime();
-        echo $dt->format('Y-m-d H:i:s');
+ 
         $params = $_POST;
         $attributes = array(
             'nimi' => $params['nimi'],
-            'lisayspvm' => $dt,
-            //'ainesosat' => $params['ainesosat'],
             'juomalaji' => $params['juomalaji'],
             'kuvaus' => $params['kuvaus'],
         );
@@ -64,7 +57,8 @@ class JuomatController extends BaseController {
     public static function drink_show($id) {
         self::check_logged_in();
         $juoma = Juoma::find($id);
-        View::make('drink/drink_show.html', array('juoma' => $juoma));
+        $ainesosat = Ainesosa::drinkkien_ainesosat($id);
+        View::make('drink/drink_show.html', array('juoma' => $juoma, 'ainesosat' => $ainesosat));
     }
 
     public static function edit($id) {

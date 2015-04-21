@@ -47,12 +47,14 @@ class Juoma extends BaseModel {
 
     public function save() {
         $query = DB::connection()->prepare('INSERT INTO Juoma (nimi, lisayspvm,'
-                . ' juomalaji, kuvaus) VALUES (:nimi, NOW(), :lisaaja,'
+                . ' juomalaji, kuvaus) VALUES (:nimi, NOW(),'
                 . ' :juomalaji, :kuvaus) RETURNING id');
         $query->execute(array('nimi' => $this->nimi,
             'juomalaji' => $this->juomalaji, 'kuvaus' => $this->kuvaus));
         $row = $query->fetch();
         $this->id = $row['id'];
+        
+        
     }
 
     public function destroy() {
