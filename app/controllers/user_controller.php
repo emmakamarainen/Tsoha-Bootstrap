@@ -17,7 +17,7 @@ class UserController extends BaseController {
             View::make('login.html', array('message' => 'Väärä nimimerkki tai salasana!'));
         } else {
             $_SESSION['user'] = $user->id;
-            Redirect::to('/home', array('message' => 'Tervetuloa takaisin '. $user->nimimerkki . '!'));
+            Redirect::to('/home', array('message' => 'Tervetuloa takaisin ' . $user->nimimerkki . '!'));
         }
     }
 
@@ -27,24 +27,23 @@ class UserController extends BaseController {
         View::make('user/user_show.html', array('user' => $user));
     }
 
-    public static function edit($id) {      
+    public static function edit($id) {
         $user = User::find($id);
         View::make('user/user_edit.html', array('user' => $user));
     }
-    
-    public static function edit_rights($id) {      
+
+    public static function edit_rights($id) {
         $user = User::find($id);
         View::make('user/user_rights.html', array('user' => $user));
     }
 
     public static function update($id) {
-        $params = $_POST;       
+        $params = $_POST;
         $attributes = array(
             'id' => $id,
             'nimimerkki' => $params['nimimerkki'],
             'salasana' => $params['salasana'],
         );
-        // Alustus
         $user = new User($attributes);
         $errors = $user->errors();
         if (count($errors) > 0) {
@@ -54,19 +53,24 @@ class UserController extends BaseController {
             Redirect::to('/user/' . $user->id, array('message' => 'Muokkaus onnistui.'));
         }
     }
-    
-    public static function update_rights($id) {        
+
+    public static function update_rights($id) {
         $params = $_POST;
         $attributes = array(
             'id' => $id,
-            'yllapitaja' => TRUE,
+            'nimimerkki' => $params['nimimerkki'],
+            'salasana' => $params['salasana'],
+            'yllapitaja' => $params['yllapitaja'],
         );
         $user = new User($attributes);
+//      Kint::dump($user);
         $errors = $user->errors();
+//        Kint::dump($errors);
         if (count($errors) > 0) {
             View::make('user/user_rights.html', array('errors' => $errors, 'attributes' => $attributes));
         } else {
             $user->update_rights();
+//            Kint::dump($user);
             Redirect::to('/user/' . $user->id, array('message' => 'Muokkaus onnistui.'));
         }
     }
@@ -82,12 +86,12 @@ class UserController extends BaseController {
         View::make('user/user_list.html', array('users' => $users));
     }
 
-    public static function store() {       
+    public static function store() {
         $params = $_POST;
         $attributes = array(
             'nimimerkki' => $params['nimimerkki'],
             'salasana' => $params['salasana'],
-            'yllapitaja'=> 0
+            'yllapitaja' => 0
         );
 
         $user = new User($attributes);
@@ -96,18 +100,18 @@ class UserController extends BaseController {
             $user->save();
 //            Kint::dump($user);
             $_SESSION['user'] = $user->id;
-            Redirect::to('/home', array('message' => 'Tervetuloa! '. $user->nimimerkki . '!'));
+            Redirect::to('/home', array('message' => 'Tervetuloa! ' . $user->nimimerkki . '!'));
 //            Redirect::to('/user/' . $user->id, array('message' => 'Käyttäjätunnus lisätty!'));
         } else {
             View::make('user/user_new.html', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
 
-    public static function user_new() {     
+    public static function user_new() {
         View::make('user/user_new.html');
     }
-   
-    public static function logout() {         
+
+    public static function logout() {
         $_SESSION['user'] = null;
         Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
     }

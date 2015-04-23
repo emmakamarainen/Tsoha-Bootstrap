@@ -66,13 +66,7 @@ class Ainesosa extends BaseModel {
         $query = DB::connection()->prepare('INSERT INTO Juomaaineyhteys (juoma_id, ainesosa_id) '
                 . 'VALUES (:juoma_id, :ainesosa_id)');
         $query->execute(array('juoma_id' => intval($drink_id), 'ainesosa_id' => $this->id));
-    }
-    
-    public function deleteFromDrink($drink_id){
-        $query = DB::connection()->prepare('DELETE FROM Juomaaineyhteys'
-                . 'WHERE id in (SELECT juoma_id FROM Juomaaineyhteys WHERE juoma_id=:id)');
-        $query->execute(array('juoma_id' => intval($drink_id)));
-    }
+    }   
     
     public static function haeNimella($ainesosa) {
         $query = DB::connection()->prepare('SELECT * FROM Ainesosat WHERE ainesosa=:ainesosa');

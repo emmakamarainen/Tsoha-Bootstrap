@@ -73,11 +73,9 @@ class JuomatController extends BaseController {
         $attributes = array(
             'id' => $id,
             'nimi' => $params['nimi'],
-//            'ainesosat' => $params['ainesosat'],
             'juomalaji' => $params['juomalaji'],
             'kuvaus' => $params['kuvaus']
         );
-// Alustus
         $juoma = new Juoma($attributes);
         $errors = $juoma->errors();
         if (count($errors) > 0) {
@@ -91,13 +89,8 @@ class JuomatController extends BaseController {
     public static function destroy($id) {
         self::check_logged_in();
         $juoma = new Juoma(array('id' => $id));
-        $juoma->destroy();
+        $juoma->destroy();      
         Redirect::to('/drink_list', array('message' => 'Poistettu.'));
     }
 
-//    public static function drink_name($nimi) {
-//        self::check_logged_in();
-//        $juomat = Juoma::hae_juomannimi($nimi);
-//        View::make('drink/drink_list.html', array('juomat' => $juomat));
-//    }
 }

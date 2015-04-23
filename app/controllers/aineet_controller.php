@@ -18,9 +18,9 @@ class AineetController extends BaseController {
 
     public static function drink_aine_store($id) {
         $params = $_POST;
-        Kint::dump($params);
+//        Kint::dump($params);
         $ainesosa = Ainesosa::haeNimella($params['ainesosa']);
-//        Kint::dump($ainesosa);
+        Kint::dump($ainesosa);
         if ($ainesosa) {
             $ainesosa->addToDrink($id);
         } else {
@@ -31,24 +31,8 @@ class AineetController extends BaseController {
             $ainesosa->save();
             $ainesosa->addToDrink($id);
         }
-//        Redirect::to('/drink/drink_list.html', array('message' => 'Aine lisätty!'));
+        Redirect::to('/drink_list', array('message' => 'Lisätty.'));
     }
-
-//    public static function store() {
-//        $params = $_POST;
-////        Kint::dump($params);
-//        $attributes = array(
-//            'ainesosa' => $params['ainesosa']
-//        );
-//        $ainesosa = new Ainesosa($attributes);
-//        $errors = $ainesosa->errors();
-//        if (count($errors) == 0) {
-//            $ainesosa->save();
-//            Redirect::to('/aine_list', array('message' => 'Aine lisätty!'));
-//        } else {
-//            View::make('aine/aine_new.html', array('errors' => $errors, 'attributes' => $attributes));
-//        }
-//    }
 
     public static function destroy($id) {
         $ainesosa = new Ainesosa(array('id' => $id));

@@ -13,10 +13,15 @@
     <dd> {{user.yllapitaja}}</dd>
 </dl>
 
+<p>
+    <a class="btn btn-success" href="{{base_path}}/user/{{user.id}}/user_edit">Muokkaa</a>
+</p>
+
 <form method="post" action="{{base_path}}/user/{{user.id}}/destroy" class="destroy-form" 
       data-confirm="Oletko varma, että haluat poistaa käyttäjätunnuksen?">
     {{forms.destroy_button("#{base_path}/user/#{user.id}/destroy")}}
 </form>
+
 {% else %}
 Kirjaudu sisään nähdäksesi käyttäjätietosi.
 <p>

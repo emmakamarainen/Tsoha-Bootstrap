@@ -19,12 +19,10 @@ class BaseController {
 
     public static function check_admin() {
         if (isset($_SESSION['user'])) {
-            $user_id = $_SESSION['user'];
-            $user = User::find($user_id);
             $admin = User::check_admin($_SESSION['user']);
-            View::make('sivu.html', array('admin' => $admin));
-            if ($user->yllapitaja == TRUE) {
-                return $user;
+            View::make('user_list.html', array('admin' => $admin));
+            if ($admin->yllapitaja == TRUE) {
+                return $admin;
             }
             return null;
         }

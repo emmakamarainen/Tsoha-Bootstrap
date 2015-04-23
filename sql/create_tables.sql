@@ -22,6 +22,6 @@ ainesosa varchar(20)
 
 create table juomaaineyhteys(
 id serial primary key,
-juoma_id integer references Juoma(id),
+juoma_id integer references Juoma(id) ON DELETE CASCADE,
 ainesosa_id integer references Ainesosat(id)
 );

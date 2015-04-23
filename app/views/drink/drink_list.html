@@ -16,7 +16,6 @@
         <tr class="success">
             <th>Nimi</th>
             <th>Lisäyspäivä</th>           
-            <th>Ainesosat</th>
             <th>Juomalaji</th>
             <th></th>
         </tr>
@@ -26,8 +25,7 @@
         {% for juoma in juomat %}
         <tr>
             <td><a href="{{base_path}}/drink/{{juoma.id}}">{{juoma.nimi}}</a></td>
-            <td>{{juoma.lisayspvm}}</td>                    
-            <td>{{ainesosa.ainesosa}}</td>                        
+            <td>{{juoma.lisayspvm}}</td>                                                       
             <td>{{juoma.juomalaji}}</td>
             <th><a class="btn btn-default btn-sm" href="{{base_path}}/drink/{{juoma.id}}/edit">Muokkaa</a></th>
         </tr>   

@@ -4,24 +4,26 @@
 
 <h1> {{juoma.nimi}}<small> drinkkiresepti</small></h1>
 
-<dl>
-    <dt> Lisäyspäivämäärä:</dt>
-    <dd> {{juoma.lisayspvm}}</dd>
-</dl>
-<dl>
+<dl class="dl-horizontal">
+    <dt>Lisäyspäivämäärä:</dt>
+    <dd>{{juoma.lisayspvm}}</dd>
+
     <dt>Kuvaus</dt>
     <dd>{{juoma.kuvaus}}</dd>
-</dl>
 
-<dl> 
     <dt>Aineosat</dt>
+    <dd><ul class="list-inline">
+
+            {% for ainesosat in ainesosat%}
+
+            <li>{{ainesosat.ainesosa}}</li>
+
+            {%endfor%}
+        </ul></dd>   
 </dl>
-{% for ainesosat in ainesosat%}
-<dl> 
-    <dd> {{ainesosat.ainesosa}}</dd>
-</dl>
-{%endfor%}
-<a href="{{base_path}}/drink/{{juoma.id}}/ainesosa" class="btn btn-success">Lisää ainesosa</a>
+<p>
+    <a href="{{base_path}}/drink/{{juoma.id}}/ainesosa" class="btn btn-success">Lisää ainesosa</a>
+</p>
 <form method="post" action="{{base_path}}/drink/{{juoma.id}}/destroy" class="destroy-form" 
       data-confirm="Oletko varma, että haluat poistaa juoman?">
     {{forms.destroy_button("#{base_path}/drink/#{juoma.id}/destroy")}}

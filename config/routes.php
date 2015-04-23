@@ -138,11 +138,10 @@ $routes->post('/drink/:id/ainesosa','check_logged_in', function($id) {
 });
 
 /* juomien ja ainesosien yhteys
- * käyttäjän poisto poistamatta itseään 
- * (käyttäjäselailussa näkyy vain kirjautuneen tiedot)
+ * user tietojen muokkaus muokkaamatta kirjautuneen tietoja
  * yllapitäjän näkymät & oikeudet
  * 
- * haku
- * (ylläpitäjä ei pysty muokkaamaan käyttäjien tietoja)
+ * (haku)
+ * (ylläpitäjä pystyy antamaan oikeudet)
  * 
  * */

@@ -52,9 +52,7 @@ class Juoma extends BaseModel {
         $query->execute(array('nimi' => $this->nimi,
             'juomalaji' => $this->juomalaji, 'kuvaus' => $this->kuvaus));
         $row = $query->fetch();
-        $this->id = $row['id'];
-        
-        
+        $this->id = $row['id'];              
     }
 
     public function destroy() {

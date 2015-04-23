@@ -4,6 +4,12 @@
 
 <h1>Käyttäjät</h1>
 Vain ylläpitäjälle näkyvä sivu.
+{% for user in users %}
+{{user.yllapitaja}}
+{% if admin %}
+halooo
+{% endif %}
+{% endfor %}
 
 
 <table class="table table-condensed">
@@ -12,7 +18,6 @@ Vain ylläpitäjälle näkyvä sivu.
             <th>Nimi</th> 
             <th>Yllapitaja</th> 
             <th></th>
-            <th></th>
         </tr>
     </thead>
 
@@ -20,12 +25,12 @@ Vain ylläpitäjälle näkyvä sivu.
         {% for user in users %}
         <tr>
             <td><a href="{{base_path}}/user/{{user.id}}">{{user.nimimerkki}}</a></td>
-            <td>{{user.yllapitaja}}</td>            
-            <th><a class="btn btn-default btn-sm" href="{{base_path}}/user/{{user.id}}/user_edit">Muokkaa</a></th>
+            <td>{{user.yllapitaja}}</td>                       
             <th><a class="btn btn-default btn-sm" href="{{base_path}}/user/{{user.id}}/user_rights">Anna oikeudet</a></th>
         </tr>   
         {% endfor %}
     </tbody>
 </table>
+
 
 {% endblock %}
