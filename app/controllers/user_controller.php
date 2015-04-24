@@ -82,6 +82,14 @@ class UserController extends BaseController {
     }
 
     public static function user_list() {
+//        if (isset($_SESSION['user'])) {
+//             $admin = User::find($_SESSION['user']);
+//            if ($admin->yllapitaja == FALSE) {
+//                Redirect::to('/home', array('errors' => 'LOL ET OO ADMIN'));
+//             }
+//        } else {
+//            Redirect::to('/home', array('errors' => 'LOL ET OO ADMIN'));
+//        }
         $users = User::all();
         View::make('user/user_list.html', array('users' => $users));
     }

@@ -108,17 +108,6 @@ class User extends BaseModel {
         }
         return $errors;
     }
-    
-//    public function validate_yllapitaja() {
-//        $errors = array();
-////        if ($this->yllapitaja == '' || $this->yllapitaja == null) {
-////            $errors[] = 'Yllapitaja ei saa olla tyhjä!';
-////        }
-//        if (!$this->yllapitaja == 'true') {
-//            $errors[] = 'Yllapitajan oikeudet annetaan sanalla "true"';
-//        }
-//        return $errors;
-//    }
 
     public static function check_admin($id) {
         $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE id = :id LIMIT 1');
@@ -132,11 +121,11 @@ class User extends BaseModel {
                 'yllapitaja' => $row['yllapitaja'],
             ));
         }
-//        if ($user->yllapitaja == TRUE) {
+        if ($user->yllapitaja == TRUE) {
 //            Kint::dump($user);
             return $user;
-//        }
+        }
+        return null;
     }
-
 
 }

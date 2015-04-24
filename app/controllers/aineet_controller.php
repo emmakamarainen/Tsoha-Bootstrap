@@ -32,6 +32,7 @@ class AineetController extends BaseController {
             $ainesosa->addToDrink($id);
         }
         Redirect::to('/drink_list', array('message' => 'Lisätty.'));
+//        Redirect::to('/drink/' . $juoma->id, array('message' => 'Juoma lisätty!'));
     }
 
     public static function destroy($id) {

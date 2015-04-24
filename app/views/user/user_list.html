@@ -3,15 +3,14 @@
 {% import "macros/forms.html" as forms %}
 
 <h1>Käyttäjät</h1>
+
 Vain ylläpitäjälle näkyvä sivu.
-{% for user in users %}
-{{user.yllapitaja}}
-{% if admin %}
-halooo
-{% endif %}
-{% endfor %}
 
+<div>
+    <p><b>{{message}}</b><p/>
+</div>
 
+{% if user_logged_in %}
 <table class="table table-condensed">
     <thead>
         <tr class="success">
@@ -32,5 +31,12 @@ halooo
     </tbody>
 </table>
 
+{% else %}
+Kirjaudu sisään.
+<p>
+    <a href="{{base_path}}/login" class="btn btn-success">Kirjaudu sisään</a>
+<p/>
+
+{% endif %}
 
 {% endblock %}

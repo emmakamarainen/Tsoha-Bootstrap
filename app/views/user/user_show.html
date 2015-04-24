@@ -3,6 +3,11 @@
 {% import "macros/forms.html" as forms %}
 
 <h1>Käyttäjätiedot</h1>
+
+<div>
+    <p><b>{{message}}</b><p/>
+</div>
+
 {%if user_logged_in %}
 <dl>
     <dt> Nimimerkki: </dt>
