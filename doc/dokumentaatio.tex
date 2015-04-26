@@ -24,26 +24,14 @@
 
 \section{Johdanto}
 
-Harjoitustyön aiheena drinkkiarkisto. Tarkoituksena on luoda drinkkireseptien hakulomake, jota käytetään www-sivulla. Lomakkeeseen kirjaudutaan sisään, ja sillä eri reseptejä voi hakea ja listata. Listauksessa reseptejä voi laittaa järjestykseen monella eri tapaa, esimerkiksi ne voi järjestää jonkin tietyn reseptin ainesosan mukaan. Resepteihin voidaan viitata monilla eri hakusanoilla, ja yhdellä hakusanalla voi saada useamman tuloksen. 
+Harjoitustyön aiheena drinkkiarkisto. Tarkoituksena on luoda drinkkireseptejä sisältävä www-sivusto. Sivuustoon kirjaudutaan sisään. Kirjautunut käyttäjä voi olla joko ylläpitäjä tai sitten tavallinen käyttäjä. Ylläpitäjällä on mahdollisuus lisätä ylläpito-oikeudet tavalliselle käyttäjälle.   
 
-Lomakkeella on ylläpitäjä tai ylläpitäjiä sekä tavallisia käyttäjiä. Tavallinen käyttäjä voi ehdottaa reseptin lisäystä tietokantaan. Ylläpitäjä voi hyväksyä ehdotuksen, ja lisätä reseptin joko tiedostosta tai lomakkeella. Ylläpitäjä voi myös antaa ylläpito-oikeudet tavalliselle käyttäjälle. 
+Kirjautumisen jälkeen sivustolla voi selailla juoma-reseptejä, tutkia reseptien tietosivuja ja halutessaan lisätä juoman. Juomaan lisätään ainesosia yksi kerrallaan juoman tietosivulta. Jos ainesosa on jo olemassa, sitä ei lisätä tietokantaan. Myös kaikki tietokannassa olevat juomien ainesosat ovat selailtavissa omalla sivullaan. 
+
+Mikäli kirjautuneella käyttäjällä on ylläpito-oikeudet, on hänen mahdollista nähdä myös käyttäjistä koostuva selailusivu. Tämän sivun  kautta ylläpitäjällä on mahdollisuus antaa muille käyttäjille ylläpito-oikeuksia. Jokainen käyttäjä pystyy muokkaamaan omia käyttäjätietojaan ja halutessaan poistaa itsensä sivustolta. 
 
 Tietokantana on PostgreSQL. Harjoitustyö toteutetaan laitoksen user--palvelimella PHP-kielellä. 
 
-%Johdantoon kirjoitetaan lyhyt, ytimekäs kuvaus siitä, mikä on työn aihe, mitä työllä kuuluisi pystyä tekemään ja mitä tekniikoita siinä käytetään.
-%
-%Järjestelmän tarkoitus
-%Tiivis kuvaus siitä mistä on kyse.
-%Millaisen toiminnan tukemiseen järjestelmä on tarkoitettu.
-%Mitkä ovat järjestelmän tavoitteet.
-%Nämä tiedot saa yleensä tehtäväkuvauksesta, kirjoita kuitenkin omin sanoin.
-
-%Toteutus-/toimintaympäristö
-%Missä ympäristössä työ toteutetaan (yleensä laitoksen users-palvelimella Tomcat- tai Apache-palvelimen alla)
-%Täytyykö web-sovelluksen alustajärjestelmän tukea jotain tiettyä ohjelmointikieltä. (esim. Java, Ruby, PHP..?)
-%Jos edellytetään jotain sovelluskehystä tulisi sekin mainita.
-%Täytyykö käyttäjän selaimen tukea jotain tiettyä ohjelmointikieltä (esim. javascript?).
-%Edellyttääkö ohjelmisto jonkun tietyn tietokannan käyttöä vai voiko sitä vaihtaa helposti. Useimmat työt toimivat vain yhdellä kannalla.
 \newpage
 \section{Käyttäjistä}
 
@@ -58,7 +46,7 @@ Tietokantana on PostgreSQL. Harjoitustyö toteutetaan laitoksen user--palvelimel
 
 \begin{flushleft}Ylläpitäjä\end{flushleft}
 
-Ylläpitäjän pitää olla rekisteröitynyt lomakkeen käyttäjä, jolle on annettu ylläpito-oikeudet. Lomake vaatii sisäänkirjautumisen.
+Ylläpitäjän pitää olla rekisteröitynyt sivuston käyttäjä, jolle on annettu ylläpito-oikeudet. Sivusto vaatii sisäänkirjautumisen.
 
 \begin{flushleft}Tavallinen käyttäjä\end{flushleft}
 
@@ -101,9 +89,7 @@ Tavallinen käyttäjä voi olla kuka tahansa sivulle kirjautunut henkilö.
 			nimi & merkkijono, maksimissaan 50 merkkiä & Juoman nimi.\\ 
 			\hline		
 			lisäyspäivämäärä & päivämäärä (date) & Päivämäärä, jolloin drinkkiohje on lisätty.\\ 
-			\hline
-			ainesosat  & merkkijono,maksimissaan 50 merkkiä & Ainekset, joista drinkki tehdään. \\
-			\hline
+			\hline			
 			juomalaji    & merkkijono,maksimissaan 50 merkkiä  & Juoman käyttötarkoitus. \\ 
 			\hline
 			kuvaus    & merkkijono, maksimissaan 400 merkkiä & Juoman kuvaus. \\ 
@@ -131,6 +117,8 @@ Tavallinen käyttäjä voi olla kuka tahansa sivulle kirjautunut henkilö.
 			nimimerkki  & merkkijono, maksimissaan 50 merkkiä & Käyttäjän nimimerkki. \\ 
 			\hline
 			salasana    & merkkijono, maksimissaan 50 merkkiä & Käyttäjän salasana.   \\ 
+			\hline
+			ylläpitäjä    & boolean & Kertoo onko käyttäjä ylläpitäjä.   \\
 			\hline
 	\end{tabular}
 \end{flushleft}
@@ -175,24 +163,32 @@ ylläpitäjäksi. Ylläpitäjä pystyy poistamaan muita käyttäjiä. Sovellukse
 \includegraphics[scale=0.8]{sivunakymat.pdf}
 
 \section{Asennustiedot}
-\section{Käynnistys- /käyttöohje}
+
+Sovelluksen tiedostot ovat tällä hetkellä users-palvelimella htdocs-hakemistossa, josta ne voi halutessaan kopioida.
+
 Harjoitustyö löytyy osoitteesta \url{http://kaem.users.cs.helsinki.fi/Drinkkiarkisto/}
 
 
-Sovellukseen pitää kirjautua sisään, jotta pystyy hakemaan reseptejä. Kirjautumaton käyttäjä ei voi selailla juomareseptejä ja drinkkien ainesosia. Kirjautunut käyttäjä voi olla joko tavallinen käyttäjä tai sitten
-ylläpitäjä. Ylläpitäjä näkee enemmän sisältöä sivuilla kuin tavallinen käyttäjä, muun muassa ”Lisää juoma” –
-toiminnon.
+\section{Käynnistys- /käyttöohje}
 
-Kirjautumissivulle pääsee joko etusivulta, tai sitten yläpalkin ”Kirjaudu sisään” – painikkeen
-kautta. Yläpalkissa on myös linkit ”Drinkkiarkisto”, joka johtaa etusivulle, ”Juomat”, joka johtaa kaikkien
-juomareseptien listaussivulle, ja ”Aineet”, joka listaa juomien ainesosat omaksi listakseen.Ylläpitäjä näkee myös listan sovellukseen käyttäjistä. Kirjautuneen käyttäjän yläpalkissa on myös käyttäjätiedot, josta näkee omat käyttäjätietonsa, ja linkki uloskirjautumiseen.
-Ylläpitäjän näkymää pääsee katsomaan käyttäjätunnuksella ”Admin” ja sen salasanalla ”admin”. Tavallisen
-käyttäjän sivut aukeavat puolestaan tunnuksilla ”nimimerkki” ja sitä vastaavalla salasanalla ”salasana”.
+Sovellukseen pitää kirjautua sisään. Kirjautumaton käyttäjä ei voi tehdä sivulla oikeastaan mitään. Kirjautunut käyttäjä voi olla joko tavallinen käyttäjä tai sitten ylläpitäjä. Ylläpitäjä näkee enemmän sisältöä sivuilla kuin tavallinen käyttäjä, muun muassa käyttäjäselailusivun.
 
-Yläpalkissa on myös ”Haku”-kohta, se toteutetaan jos aikaa jää sen toteuttamiseen. Tarkoitus olisi hakea reseptejä ainakin niiden nimen perusteella.
+Kirjautumissivulle pääsee joko etusivulta, tai sitten yläpalkin kautta. Kirjautumaton käyttäjä päätyy vain kirjautumissivulle, vaikka hän painaisi yläpalkissa mitä tahansa. Kirjautumisen jälkeen näkymät muuttuvat. Yläpalkissa on linkit ”Drinkkiarkisto”, joka johtaa etusivulle, ”Juomat”, joka johtaa kaikkien
+juomareseptien listaussivulle, ja ”Aineet”, joka listaa juomien ainesosat omaksi listakseen. Ylläpitäjä näkee myös listan sovellukseen käyttäjistä. Kirjautuneen käyttäjän yläpalkissa on myös käyttäjätiedot, josta näkee omat käyttäjätietonsa, ja linkki uloskirjautumiseen.
+Ylläpitäjän näkymää pääsee katsomaan käyttäjätunnuksella ”admin” ja sen salasanalla ”admin”. Tavallisen käyttäjän sivut aukeavat puolestaan tunnuksilla ”nimimerkki” ja sitä vastaavalla salasanalla ”salasana”.
 
 \section{Testaus, tunnetut bugit ja puutteet ja jatkokehitysideat}
+Olisin halunnut toteuttaa vielä ainakin juomareseptien haun joko reseptien nimen perusteella tai sitten ainesosan nimellä, mutta aika ei riittänyt. 
+
+Juoman lisäyksessä on mahdollista tällä hetkellä lisätä sama juoma monta kertaa. Myöskin rekisteröityessä käyttäjäksi on mahdollista ottaa sama nimimerkki kuin jollain muulla, minkä korjaisin jos olisi enemmän aikaa. 
+
+En tehnyt sovellukselle testausta, sillä sitä ei vaadittu eikä olisi oikein ollut aikaakaan.
+
 \section{Omat kokemukset}
+Harjoitustyön alussa olin kyllä aivan pihalla. Tuntuu, että näinä viikkoina vastaan on tullut sekalaisesti asiaa, joista osa on jäänyt hieman sumeaksi mielikuvaksi. Itselläni meni monta viikkoa, ennenkuin tajusin mallien, sivunäkymien, routesin ja kontrollereiden yhteyden. Kovasti tuntui, että kooditoteutukseni oli aikalailla samaa kuin materiaalissa ja jos materiaalissa ei jotain ollut painittu (kuten miten ylläpitäjän näkymät luodaan), niin ei sitä osannut itse oikein lähteä ajattelemaan. Tuntuu myös, että vieläkin koodissa on kohtia joita en ymmärrä. Mutta samaan aikaan tämän sovelluksen tekeminen on ollut kivaa, on hienoa nähdä miten saa asioita toimimaan ja pystyy lisäämään ja poistamaan tietokannsa asioita. Ehkäpä olisi tarvinnut enemmän aikaa, jotta olisi pystynyt kunnolla sisäisstämään mitä oikein on tekemässä ja tutkimaan erilailla toteutusvaihtoehtoja.
+
 \section{Muu dokumentaatio}
+
+SQL--luontitaulut löytyät repositiostani sql-kansiosta.
 
 \end{document}
