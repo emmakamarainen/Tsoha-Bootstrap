@@ -3,6 +3,12 @@
 {% import "macros/forms.html" as forms %}
 
 <h1>Ainesosat</h1>
+<div>
+    <h3 class="text-success">{{message_green}}</h3>
+</div>
+<div>
+    <h3 class="text-danger">{{message_red}}</h3>
+</div>
 {%if user_logged_in %}
 <table class="table table-condensed">
     <thead>
@@ -10,7 +16,6 @@
             <th>Nimi</th>            
         </tr>
     </thead>
-
     <tbody>
         {% for ainesosa in aineet %}
         <tr>

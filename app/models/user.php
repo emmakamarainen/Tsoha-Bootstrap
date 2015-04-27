@@ -69,11 +69,8 @@ class User extends BaseModel {
 
     public static function authenticate($nimimerkki, $salasana) {
         $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE nimimerkki = :nimimerkki AND salasana = :salasana LIMIT 1');
-//        $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE nimimerkki = \'Doku\' '
-//                . 'AND salasana = \'alkkis\' LIMIT 1');
         $query->execute(array('nimimerkki' => $nimimerkki, 'salasana' => $salasana));
         $row = $query->fetch();
-//        Kint::dump($row);
         if ($row) {
             $user = new User(array(
                 'id' => $row['id'],
@@ -122,7 +119,6 @@ class User extends BaseModel {
             ));
         }
         if ($user->yllapitaja == TRUE) {
-//            Kint::dump($user);
             return $user;
         }
         return null;

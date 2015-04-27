@@ -3,17 +3,16 @@
 {% import "macros/forms.html" as forms %}
 
 <h1>Drinkkien ohjeet</h1>
-
-<div>
-    <p><b>{{message}}</b><p/>
-</div>
-
 {% if user_logged_in %}
+<div>
+    <h3 class="text-success">{{message_green}}</h3>
+</div>
+<div>
+    <h3 class="text-danger">{{message_red}}</h3>
+</div>
 <p>   
     <a href="{{base_path}}/drink_new" class="btn btn-success">Lisää drinkki</a>
-    <a href="{{base_path}}/drink_new" class="btn btn-success">Ehdota drinkkiä</a>
 </p>
-
 <table class="table table-condensed">
     <thead>
         <tr class="success">
@@ -23,7 +22,6 @@
             <th></th>
         </tr>
     </thead>
-
     <tbody>
         {% for juoma in juomat %}
         <tr>

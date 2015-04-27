@@ -3,23 +3,22 @@
 {% import "macros/forms.html" as forms %}
 
 <h1>Käyttäjät</h1>
-
 Vain ylläpitäjälle näkyvä sivu.
-
 <div>
-    <p><b>{{message}}</b><p/>
+    <h3 class="text-success">{{message_green}}</h3>
 </div>
-
+<div>
+    <h3 class="text-danger">{{message_red}}</h3>
+</div>
 {% if user_logged_in %}
 <table class="table table-condensed">
     <thead>
         <tr class="success">
             <th>Nimi</th> 
-            <th>Yllapitaja</th> 
+            <th>Ylläpitäjä</th> 
             <th></th>
         </tr>
     </thead>
-
     <tbody>
         {% for user in users %}
         <tr>
@@ -30,13 +29,10 @@ Vain ylläpitäjälle näkyvä sivu.
         {% endfor %}
     </tbody>
 </table>
-
 {% else %}
 Kirjaudu sisään.
 <p>
     <a href="{{base_path}}/login" class="btn btn-success">Kirjaudu sisään</a>
 <p/>
-
 {% endif %}
-
 {% endblock %}

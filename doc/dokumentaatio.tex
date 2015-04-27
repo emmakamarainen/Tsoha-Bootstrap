@@ -37,42 +37,45 @@ Tietokantana on PostgreSQL. Harjoitustyö toteutetaan laitoksen user--palvelimel
 
 \subsection{Käyttötapauskaavio}
 \begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.4]{kayttotapaukset.pdf}
+	
+	\includegraphics[scale=0.9]{kayttotapaukset.pdf}
 	\caption{Käyttötapauskaavio}
 \end{figure}
 	
 \subsection{Käyttäjäryhmät}
 
 \begin{flushleft}Ylläpitäjä\end{flushleft}
-
-Ylläpitäjän pitää olla rekisteröitynyt sivuston käyttäjä, jolle on annettu ylläpito-oikeudet. Sivusto vaatii sisäänkirjautumisen.
-
+\begin{itemize}
+\item Ylläpitäjän pitää olla rekisteröitynyt sivuston käyttäjä, jolle on annettu ylläpito-oikeudet. Sivusto vaatii sisäänkirjautumisen.
+\end{itemize}
 \begin{flushleft}Tavallinen käyttäjä\end{flushleft}
-
-Tavallinen käyttäjä voi olla kuka tahansa sivulle kirjautunut henkilö. 
+\begin{itemize}
+\item Tavallinen käyttäjä voi olla kuka tahansa sivulle kirjautunut henkilö. 
+\end{itemize}
 
 \newpage
 \subsection{Käyttötapaukset}
 
 \begin{flushleft}\textbf{Ylläpitäjä\(\colon\)} \end{flushleft}
 \begin{itemize}
-	\item Reseptien haku\(\colon\) käyttäjä voi hakea tietokannasta reseptejä hakusanalla. Yksi hakusana voi tuottaa monta tulosta.
-	\item Reseptien listaus\(\colon\) käyttäjä voi listata reseptit ainesosan mukaan tai aakkos-- tai juomalajijärjestykseen.
-	\item Ylläpito-oikeuden antaminen tavalliselle käyttäjälle\(\colon\) käyttäjä voi tehdä tavallisesta käyttäjästä ylläpitäjän. 
-	\item Uuden reseptin ehdotuksen hyväksyminen\(\colon\) käyttäjä voi hyväksyä tavallisen käyttäjän reseptiehdotuksen, ja lisätä reseptin tietokantaan.
-	\item Reseptin lisäys lomakkeella\(\colon\) käyttäjä voi lisätä reseptin käyttäen siihen tarkoitettua lomaketta.
-	\item Reseptin lisäys tiedostosta\(\colon\) käyttäjä voi lisätä uuden reseptin lukemalla sen suoraan tiedostosta. 
-	\item Muut käyttötapaukset\(\colon\) Käyttäjätietojen muutos, käyttäjätilin poisto, käyttäjätunnuksen luominen, reseptien selaaminen, kirjautuminen
+	\item Reseptien listaus\(\colon\) käyttäjä voi listata reseptit.
+	\item Reseptin lisäys\(\colon\) käyttäjä voi lisätä reseptin käyttäen siihen tarkoitettua lomaketta. 
+	\item Reseptin poisto\(\colon\) ylläpitäjä voi poistaa juomareseptin.
+	\item Ainesosien listaus\(\colon\) käyttäjä voi listata reseptien ainesosat.
+	\item Ainesosien lisääminen juomaan\(\colon\) käyttäjä voi lisätä juomaan ainesosia lomakkeella.
+	\item Ylläpito-oikeuden antaminen tavalliselle käyttäjälle\(\colon\) käyttäjä voi tehdä tavallisesta käyttäjästä ylläpitäjän.
+	\item Käyttäjien listaus\(\colon\) ylläpitäjä voi listata sivuston käyttäjät.
+	\item Muut käyttötapaukset\(\colon\) Käyttäjätietojen muutos, käyttäjätilin poisto, käyttäjätunnuksen luominen, kirjautuminen
 \end{itemize}
 
 \begin{flushleft}\textbf{Tavallinen käyttäjä\(\colon\)} \end{flushleft}
 
 \begin{itemize}
-	\item Reseptien haku \(\colon\) käyttäjä voi hakea tietokannasta reseptejä hakusanalla. Yksi hakusana voi tuottaa monta tulosta.
-	\item Reseptien listaus\(\colon\) käyttäjä voi listata reseptit ainesosan mukaan tai aakkos-- tai juomalajijärjestykseen.
-	\item Uuden reseptin ehdottaminen\(\colon\) käyttäjä voi ehdottaa uutta reseptiä ylläpitäjälle lisättäväksi tietokantaan.
-	\item Muut käyttötapaukset\(\colon\) Käyttäjätietojen muutos, käyttäjätilin poisto, käyttäjätunnuksen luominen, reseptien selaaminen, kirjautuminen
+		\item Reseptien listaus\(\colon\) käyttäjä voi listata reseptit.
+	\item Reseptin lisäys\(\colon\) käyttäjä voi lisätä reseptin käyttäen siihen tarkoitettua lomaketta. 
+	\item Ainesosien listaus\(\colon\) käyttäjä voi listata reseptien ainesosat.
+	\item Ainesosien lisääminen juomaan\(\colon\) käyttäjä voi lisätä juomaan ainesosia lomakkeella.
+	\item Muut käyttötapaukset\(\colon\) Käyttäjätietojen muutos, käyttäjätilin poisto, käyttäjätunnuksen luominen, kirjautuminen
 \end{itemize}
 
 \newpage
@@ -173,9 +176,9 @@ Harjoitustyö löytyy osoitteesta \url{http://kaem.users.cs.helsinki.fi/Drinkkia
 
 Sovellukseen pitää kirjautua sisään. Kirjautumaton käyttäjä ei voi tehdä sivulla oikeastaan mitään. Kirjautunut käyttäjä voi olla joko tavallinen käyttäjä tai sitten ylläpitäjä. Ylläpitäjä näkee enemmän sisältöä sivuilla kuin tavallinen käyttäjä, muun muassa käyttäjäselailusivun.
 
-Kirjautumissivulle pääsee joko etusivulta, tai sitten yläpalkin kautta. Kirjautumaton käyttäjä päätyy vain kirjautumissivulle, vaikka hän painaisi yläpalkissa mitä tahansa. Kirjautumisen jälkeen näkymät muuttuvat. Yläpalkissa on linkit ”Drinkkiarkisto”, joka johtaa etusivulle, ”Juomat”, joka johtaa kaikkien
-juomareseptien listaussivulle, ja ”Aineet”, joka listaa juomien ainesosat omaksi listakseen. Ylläpitäjä näkee myös listan sovellukseen käyttäjistä. Kirjautuneen käyttäjän yläpalkissa on myös käyttäjätiedot, josta näkee omat käyttäjätietonsa, ja linkki uloskirjautumiseen.
-Ylläpitäjän näkymää pääsee katsomaan käyttäjätunnuksella ”admin” ja sen salasanalla ”admin”. Tavallisen käyttäjän sivut aukeavat puolestaan tunnuksilla ”nimimerkki” ja sitä vastaavalla salasanalla ”salasana”.
+Kirjautumissivulle pääsee joko etusivulta, tai sitten yläpalkin kautta. Kirjautumaton käyttäjä päätyy vain kirjautumissivulle, vaikka hän painaisi yläpalkissa mitä tahansa. Kirjautumisen jälkeen näkymät muuttuvat. Yläpalkissa on linkit ”Drinkkiarkisto”, joka johtaa etusivulle, ”Juomat”, joka johtaa kaikkien juomareseptien listaussivulle, ja ”Aineet”, joka listaa juomien ainesosat omaksi listakseen. Ylläpitäjä näkee myös listan sovellukseen käyttäjistä. Kirjautuneen käyttäjän yläpalkissa on myös käyttäjätiedot, josta näkee omat käyttäjätietonsa, ja linkki uloskirjautumiseen.
+
+Ylläpitäjän näkymää pääsee katsomaan käyttäjätunnuksella ”admin” ja sen salasanalla ”admin”. Tavallisen käyttäjän sivut aukeavat puolestaan tunnuksilla ”kayttaja” ja sitä vastaavalla salasanalla ”kayttaja”.
 
 \section{Testaus, tunnetut bugit ja puutteet ja jatkokehitysideat}
 Olisin halunnut toteuttaa vielä ainakin juomareseptien haun joko reseptien nimen perusteella tai sitten ainesosan nimellä, mutta aika ei riittänyt. 

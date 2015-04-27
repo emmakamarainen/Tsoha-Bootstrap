@@ -1,36 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
 {% import "macros/forms.html" as forms %}
-
-<div class="alert alert-success">
-    {{message}}
+<div>
+    <h3 class="text-success">{{message_green}}</h3>
 </div>
-
-
+<div>
+    <h3 class="text-danger">{{message_red}}</h3>
+</div>
 <h1> {{juoma.nimi}}<small> drinkkiresepti</small></h1>
-
 <dl class="dl-horizontal">
     <dt>Lisäyspäivämäärä:</dt>
     <dd>{{juoma.lisayspvm}}</dd>
-
     <dt>Kuvaus</dt>
     <dd>{{juoma.kuvaus}}</dd>
-
     <dt>Aineosat</dt>
     <dd><ul class="list">
-
             {% for ainesosat in ainesosat%}
-
             <li>{{ainesosat.ainesosa}}</li>
-
             {%endfor%}
         </ul></dd>   
 </dl>
 <p>
     <a href="{{base_path}}/drink/{{juoma.id}}/ainesosa" class="btn btn-success">Lisää ainesosa</a>
 </p>
+{% if user_logged_in.yllapitaja %}
 <form method="post" action="{{base_path}}/drink/{{juoma.id}}/destroy" class="destroy-form" 
       data-confirm="Oletko varma, että haluat poistaa juoman?">
     {{forms.destroy_button("#{base_path}/drink/#{juoma.id}/destroy")}}
 </form>
+{% endif %}
 {% endblock %}

@@ -1,32 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
 {% import "macros/forms.html" as forms %}
-
 <h1>Käyttäjätiedot</h1>
-
 <div>
-    <p><b>{{message}}</b><p/>
+    <h3 class="text-success">{{message_green}}</h3>
 </div>
-
+<div>
+    <h3 class="text-danger">{{message_red}}</h3>
+</div>
 {%if user_logged_in %}
 <dl>
     <dt> Nimimerkki: </dt>
     <dd> {{user.nimimerkki}}</dd>
     <dt> Salasana:</dt>
     <dd> {{user.salasana}}</dd>
+    {%if user_logged_in.yllapitaja %}
     <dt> Yllapitaja:</dt>
     <dd> {{user.yllapitaja}}</dd>
+    {% endif %}
 </dl>
-
 <p>
     <a class="btn btn-success" href="{{base_path}}/user/{{user.id}}/user_edit">Muokkaa</a>
 </p>
-
 <form method="post" action="{{base_path}}/user/{{user.id}}/destroy" class="destroy-form" 
       data-confirm="Oletko varma, että haluat poistaa käyttäjätunnuksen?">
     {{forms.destroy_button("#{base_path}/user/#{user.id}/destroy")}}
 </form>
-
 {% else %}
 Kirjaudu sisään nähdäksesi käyttäjätietosi.
 <p>

@@ -1,9 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
 {% import "macros/forms.html" as forms %}
-
+<div>
+    <h3 class="text-success">{{message_green}}</h3>
+</div>
+<div>
+    <h3 class="text-danger">{{message_red}}</h3>
+</div>
 {%if user_logged_in %}
-<h1>Tervetuloa {{user_logged_in.nimimerkki}}!</h1>
+<h1>Drinkkiarkiston etusivu</h1>
+<p> 
+    Kirjautunut käyttäjä: {{user_logged_in.nimimerkki}}
+</p>
 <p> 
     <a href="{{base_path}}/user/{{user_logged_in.id}}" class="btn btn-success">Käyttäjätiedot</a>
     <a href="{{base_path}}/user/{{user_logged_in.id}}/user_edit" class="btn btn-success">Muokkaa tietoja</a>

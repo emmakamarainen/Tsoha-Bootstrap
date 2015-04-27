@@ -89,23 +89,4 @@ class Juoma extends BaseModel {
         return $errors;
     }
 
-//    public function hae_juomanimi($nimi) {
-//        $query = DB::connection()->prepare('SELECT* FROM Juoma WHERE nimi=:nimi');
-//        $query->execute(array('nimi' => $nimi));
-//        $rows = $query->fetchAll();
-//        $juomat = array();
-//
-//        foreach ($rows as $row) {
-//            $juomat[] = new Juoma(array(
-//                'id' => $row['id'],
-//                'kayttaja_id' => $row['kayttaja_id'],
-//                'nimi' => $row['nimi'],
-//                'lisayspvm' => $row['lisayspvm'],
-//                'juomalaji' => $row['juomalaji'],
-//                'kuvaus' => $row['kuvaus']
-//            ));
-//        }
-//        return $juomat;
-//    }
-
 }

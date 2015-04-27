@@ -39,7 +39,7 @@ class Ainesosa extends BaseModel {
         }
         return $ainesosat;
     }
-    
+
     public static function find($id) {
         $query = DB::connection()->prepare('SELECT * FROM Ainesosat WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));
@@ -61,13 +61,13 @@ class Ainesosa extends BaseModel {
         $row = $query->fetch();
         $this->id = $row['id'];
     }
-    
-    public function addToDrink($drink_id){
+
+    public function addToDrink($drink_id) {
         $query = DB::connection()->prepare('INSERT INTO Juomaaineyhteys (juoma_id, ainesosa_id) '
                 . 'VALUES (:juoma_id, :ainesosa_id)');
         $query->execute(array('juoma_id' => intval($drink_id), 'ainesosa_id' => $this->id));
-    }   
-    
+    }
+
     public static function haeNimella($ainesosa) {
         $query = DB::connection()->prepare('SELECT * FROM Ainesosat WHERE ainesosa=:ainesosa');
         $query->execute(array('ainesosa' => $ainesosa));

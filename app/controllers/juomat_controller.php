@@ -10,7 +10,7 @@ class JuomatController extends BaseController {
 
     public static function store() {
         self::check_logged_in();
- 
+
         $params = $_POST;
         $attributes = array(
             'nimi' => $params['nimi'],
@@ -22,7 +22,7 @@ class JuomatController extends BaseController {
         $errors = $juoma->errors();
         if (count($errors) == 0) {
             $juoma->save();
-            Redirect::to('/drink/' . $juoma->id, array('message' => 'Juoma lisätty!'));
+            Redirect::to('/drink/' . $juoma->id, array('message_green' => 'Juoma lisätty!'));
         } else {
             View::make('drink/drink_new.html', array('errors' => $errors, 'attributes' => $attributes));
         }
@@ -41,19 +41,6 @@ class JuomatController extends BaseController {
         View::make('home.html');
     }
 
-    public static function search() {
-        self::check_logged_in();
-        View::make('drink/drink_search.html');
-    }
-
-    public static function search_name() {
-        self::check_logged_in();
-        $params = $_POST;
-        $juomat = Juoma::hae_juomanimi($params['nimi']);
-//        Kint__dump($juomat);
-        View::make('drink/drink_searchlist.html', array('juomat' => $juomat));
-    }
-
     public static function drink_show($id) {
         self::check_logged_in();
         $juoma = Juoma::find($id);
@@ -69,7 +56,7 @@ class JuomatController extends BaseController {
 
     public static function update($id) {
         self::check_logged_in();
-        $params = $_POST;       
+        $params = $_POST;
         $attributes = array(
             'id' => $id,
             'nimi' => $params['nimi'],
@@ -82,15 +69,15 @@ class JuomatController extends BaseController {
             View::make('drink/drink_edit.html', array('errors' => $errors, 'attributes' => $attributes));
         } else {
             $juoma->update();
-            Redirect::to('/drink/' . $juoma->id, array('message' => 'Muokkaus onnistui.'));
+            Redirect::to('/drink/' . $juoma->id, array('message_green' => 'Muokkaus onnistui.'));
         }
     }
 
     public static function destroy($id) {
         self::check_logged_in();
         $juoma = new Juoma(array('id' => $id));
-        $juoma->destroy();      
-        Redirect::to('/drink_list', array('message' => 'Poistettu.'));
+        $juoma->destroy();
+        Redirect::to('/drink_list', array('message_red' => 'Poistettu.'));
     }
 
 }

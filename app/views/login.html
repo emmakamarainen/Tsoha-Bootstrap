@@ -10,21 +10,18 @@
         {% endfor %}
     </ul>
 </div>
-<div>
-    <p><b>{{message}}</b><p/>
-</div>
-
 {% endif %}
-
-<!-- Kaikki lomakkeen elementit form-tagin sisään -->
+<div>
+    <h3 class="text-success">{{message_green}}</h3>
+</div>
+<div>
+    <h3 class="text-danger">{{message_red}}</h3>
+</div>
 <form method="post" action="{{base_path}}/login">
-    <!-- Tekstikenttä käyttäjätunnukselle -->
     <div class="form-group">
         <label>Käyttäjätunnus</label>
         <input type="text" class="form-control" name="nimimerkki" value="{{nimimerkki}}">
     </div>
-
-    <!-- Salasanakenttä salasanalle -->
     <div class="form-group">
         <label>Salasana</label>
         <input type="password" class="form-control" name="salasana">
@@ -34,5 +31,4 @@
         <a href="{{base_path}}/user_new" class="btn btn-success">Rekisteröidy!</a>
     </p>
 </form>
-
 {% endblock %}

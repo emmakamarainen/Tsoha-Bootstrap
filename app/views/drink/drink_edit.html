@@ -12,9 +12,7 @@
     </ul>
 </div>
 {% endif %}
-
 <form method="post" action="{{base_path}}/drink/{{juoma.id}}/edit" class="form-horizontal">
-
     <div class="form-group">
         <label  class="col-sm-2 control-label">Nimi</label>
         <div class="col-sm-10">
@@ -30,7 +28,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">Kuvaus</label>
         <div class="col-sm-10">
-            <textarea  name="kuvaus" class="form-control" placeholder="Lorem ipsum" value="{{juoma.kuvaus}}"> </textarea>
+            <textarea  name="kuvaus" class="form-control" placeholder="Lorem ipsum" >{{juoma.kuvaus}} </textarea>
         </div>
     </div>
     <div class="form-group">

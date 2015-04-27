@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 {% import "macros/forms.html" as forms %}
-
 <h1> Uusi juoma</h1>
-
 {% if errors %}
 <div class="alert alert-danger">
     <ul>
@@ -13,9 +11,7 @@
     </ul>
 </div>
 {% endif %}
-
 <form method="post" action="{{base_path}}/drink_new" class="form-horizontal">
-
     <div class="form-group">
         <label  class="col-sm-2 control-label">Nimi</label>
         <div class="col-sm-10">

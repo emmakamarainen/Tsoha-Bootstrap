@@ -12,9 +12,7 @@
     </ul>
 </div>
 {% endif %}
-
 <form method="post" action="{{base_path}}/drink/{{drink_id}}/ainesosa" class="form-horizontal">
-
     <div class="form-group">
         <label  class="col-sm-2 control-label">Ainesosa</label>
         <div class="col-sm-10">
@@ -25,5 +23,4 @@
         {{forms.save_button("#{base_path}/aine/#{ainesosa.id}/save")}}
     </div>
 </form>
-
 {% endblock %}
