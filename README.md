@@ -15,6 +15,10 @@ Yleisiä linkkejä:
 
 *Aihekuvaus*
 
+Tämä oli alkuperäinen aihekuvaus, aivan kaikkia toimintoja ei ehditty toteuttaa. Sivuston toiminnallisuudesta voi lukea dokumentaatiosta.
+
+-----
+
 Tehtävänä on laatia www-sivulla toimiva drinkinhakulomake. Drinkkireseptit kuvaavat cocktaileja ja muita juomasekoituksia. Reseptejä voi hakea juoman nimeen liittyvällä hakusanalla tai jonkin tietyn osa-aineen mukaan. Resepteistä voi pyytää myös listan aakkosjärjestyksen, ainesosan tai juomalajin (alkudrinkki, cocktail, shotti,…) mukaan.
 
 Järjestelmään kirjaudutaan sisään. Samalla hakusanalla voi saada useita eri tuloksia tai samaan juomaan voidaan viitata usealla hakusanalla, koska juomasekoitukset voivat kulkea eri nimillä eri paikoissa.
@@ -26,11 +30,11 @@ Järjestelmän ylläpitäjä voi listata järjestelmän reseptejä joko kokonaan
 Toimintoja:
 
 * Kirjautuminen
-* Reseptin haku
+* Reseptin haku (ei ehditty toteuttaa)
 * Reseptien selailu
 * Reseptin lisäys lomakkeella
-* Reseptien sisäänluku tiedostosta
-* Uuden reseptin ehdottaminen / ehdotuksen hyväksyminen
+* Reseptien sisäänluku tiedostosta (ei ehditty toteuttaa)
+* Uuden reseptin ehdottaminen / ehdotuksen hyväksyminen (ei ehditty toteuttaa)
 * Käyttäjätunnuksen luominen
 * Käyttäjätietojen muutos ja tilin poisto
 
