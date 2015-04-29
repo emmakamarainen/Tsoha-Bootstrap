@@ -17,8 +17,27 @@
 
 
 \begin{document}
+\begin{titlepage}
+\begin{center}
+\section*{Tietokantasovelluksen harjoitustyö}
+\begin{LARGE}
+{DRINKKIARKISTO}
+\end{LARGE}
+\linebreak
+\linebreak
+\begin{large}
+Emma Kämäräinen
+\end{large}
+\linebreak
+\linebreak
+Kevät 2015
 
-\section*{Tietokantasovellus, harjoitustyö}
+\end{center}
+
+
+\end{titlepage}
+
+
 
 \tableofcontents
 
@@ -80,11 +99,11 @@ Tietokantana on PostgreSQL. Harjoitustyö toteutetaan laitoksen user--palvelimel
 
 \newpage
 \section{Järjestelmän tietosisältö}
-\begin{flushleft}\textbf{Käsitekaavio} \end{flushleft}
+\subsection{Käsitekaavio}
 
 \includegraphics[scale=0.8]{kasitekaavio.pdf}
 
-\begin{flushleft}\textbf{Juoma} \end{flushleft}
+\subsection{Tietokohde: Juoma}
 \begin{flushleft}
 	\begin{tabular}{|l|l|l|}\hline
 			Attribuutti      & Arvojoukko        & Kuvailu\\
@@ -100,7 +119,7 @@ Tietokantana on PostgreSQL. Harjoitustyö toteutetaan laitoksen user--palvelimel
 	\end{tabular}
 \end{flushleft}
 
-\begin{flushleft}\textbf{Ainesosat} \end{flushleft}
+\subsection{Tietokohde: Ainesosat}
 \begin{flushleft}
 	\begin{tabular}{|l|l|l|}
 			\hline
@@ -111,7 +130,7 @@ Tietokantana on PostgreSQL. Harjoitustyö toteutetaan laitoksen user--palvelimel
 	\end{tabular}
 \end{flushleft}
 
-\begin{flushleft}\textbf{Käyttäjä} \end{flushleft}
+\subsection{Tietokohde: Käyttäjä}
 \begin{flushleft}
 	\begin{tabular}{|l|l|l|}
 			\hline
@@ -126,7 +145,7 @@ Tietokantana on PostgreSQL. Harjoitustyö toteutetaan laitoksen user--palvelimel
 	\end{tabular}
 \end{flushleft}
 
-\begin{flushleft}\textbf{Ainesosayhteys} \end{flushleft}
+\subsection{Tietokohde: Juoma-aineyhteys}
 \begin{flushleft}
 	\begin{tabular}{|l|l|l|}
 			\hline
@@ -149,13 +168,12 @@ Tietokantana on PostgreSQL. Harjoitustyö toteutetaan laitoksen user--palvelimel
 
 Kansiorakenne tulee melkein suoraan forkatusta reposta. ”App”-kansioon on sijoitettu alakansioita, 
 joissa sijaitsevat samoilla nimillä kontrollerit, mallit ja näkymät. Näkymät on jaettu vielä alakansioihin 
-sisällön mukaan (juoma, user ja aine). Malleista (models) löytyvät pääluokat juoma, user ja aine. Dokumentaatio 
+sisällön mukaan (juoma, user ja aine). Base.html-nimisessä näkymässä on nähtävissä navigaatiopalkin html-koodaus. Malleista (models) löytyvät pääluokat juoma, user ja aine. Dokumentaatio 
 sijaitsee kansiossa ”doc”. Sieltä löytyvät tähän sovellukseen liittyvät kaaviot ja ohjeet. Tietokantasovellusta
 tehdessä on käytetty MVC-mallia. 
 
-Sovellukseen kirjaudutaan, joka käynnistää session. Kirjautunut käyttäjä näkee listaukset ja pystyy muokkaamaan 
-drinkkiohjeita. Kirjautunut käyttäjä pystyy myös muokkaamaan omia käyttäjätietojaan tai niin halutessaan poistamaan käyttäjätunnuksensa. Ylläpitäjä pystyy lisäämään kokonaisen uuden juomaohjeen sekä korottamaan tavallisen käyttäjän 
-ylläpitäjäksi. Ylläpitäjä pystyy poistamaan muita käyttäjiä. Sovelluksesta pystyy kirjautumaan ulos, jolloin palaa takaisin etusivulle. 
+Sovellukseen kirjaudutaan, joka käynnistää session. Kirjautunut käyttäjä näkee listaukset, pystyy lisäämään juoman ja muokkaamaan 
+drinkkiohjeita. Kirjautunut käyttäjä pystyy myös muokkaamaan omia käyttäjätietojaan tai niin halutessaan poistamaan käyttäjätunnuksensa. Ylläpitäjä pystyy korottamaan tavallisen käyttäjän ylläpitäjäksi. Ylläpitäjä pystyy poistamaan muita käyttäjiä. Vain ylläpitäjä kykenee poistamaan lisätyn juomareseptin. Sovelluksesta voi kirjautua ulos, jolloin palaa takaisin etusivulle. 
 
 
 
@@ -176,19 +194,21 @@ Harjoitustyö löytyy osoitteesta \url{http://kaem.users.cs.helsinki.fi/Drinkkia
 
 Sovellukseen pitää kirjautua sisään. Kirjautumaton käyttäjä ei voi tehdä sivulla oikeastaan mitään. Kirjautunut käyttäjä voi olla joko tavallinen käyttäjä tai sitten ylläpitäjä. Ylläpitäjä näkee enemmän sisältöä sivuilla kuin tavallinen käyttäjä, muun muassa käyttäjäselailusivun.
 
-Kirjautumissivulle pääsee joko etusivulta, tai sitten yläpalkin kautta. Kirjautumaton käyttäjä päätyy vain kirjautumissivulle, vaikka hän painaisi yläpalkissa mitä tahansa. Kirjautumisen jälkeen näkymät muuttuvat. Yläpalkissa on linkit ”Drinkkiarkisto”, joka johtaa etusivulle, ”Juomat”, joka johtaa kaikkien juomareseptien listaussivulle, ja ”Aineet”, joka listaa juomien ainesosat omaksi listakseen. Ylläpitäjä näkee myös listan sovellukseen käyttäjistä. Kirjautuneen käyttäjän yläpalkissa on myös käyttäjätiedot, josta näkee omat käyttäjätietonsa, ja linkki uloskirjautumiseen.
+Kirjautumissivulle pääsee joko etusivulta, tai sitten yläpalkin kautta. Kirjautumaton käyttäjä päätyy vain kirjautumissivulle, vaikka hän painaisi yläpalkissa mitä tahansa. Kirjautumisen jälkeen näkymät muuttuvat. Yläpalkissa on linkit ”Drinkkiarkisto”, joka johtaa etusivulle, ”Juomat”, joka johtaa kaikkien juomareseptien listaussivulle, ja ”Aineet”, joka listaa juomien ainesosat omaksi listakseen. Ylläpitäjä näkee myös listan sovelluksen käyttäjistä. Käyttäjien listaussivulta pääse ylläpitojen antamissivulle. Kirjautuneen käyttäjän yläpalkissa on myös käyttäjätiedot, josta näkee omat käyttäjätietonsa, ja linkki uloskirjautumiseen.
 
 Ylläpitäjän näkymää pääsee katsomaan käyttäjätunnuksella ”admin” ja sen salasanalla ”admin”. Tavallisen käyttäjän sivut aukeavat puolestaan tunnuksilla ”kayttaja” ja sitä vastaavalla salasanalla ”kayttaja”.
 
 \section{Testaus, tunnetut bugit ja puutteet ja jatkokehitysideat}
-Olisin halunnut toteuttaa vielä ainakin juomareseptien haun joko reseptien nimen perusteella tai sitten ainesosan nimellä, mutta aika ei riittänyt. 
+Olisin halunnut toteuttaa vielä ainakin juomareseptien haun joko reseptien nimen perusteella tai sitten ainesosan nimellä, mutta aika ei riittänyt. Myöskin olisi ollut kiva tehdä parempi listaus juomien ainesosille: ainesosan nimeä painaessa olisi näkynyt missä juomissa ainesosa on. Myös tällä hetkellä ainesosa voi olla listassa, vaikka se ei kuulu mihinkään juomaan, ja se on ehkä hieman tyhmää. Demossa toisella samasta aiheesta tehneellä oli myös juomakohtaiset valmistusohjeet (ja ainesosien määrät), mutta nämä eivät jostain syystä tulleet minulle mieleen aikaisemmin enkä ehdi niitä enää lisätä. Jos tämä olisi oikea, käytössä oleva juomareseptiarkisto, niin ne pitäisi tietysti lisätä. 
 
-Juoman lisäyksessä on mahdollista tällä hetkellä lisätä sama juoma monta kertaa. Myöskin rekisteröityessä käyttäjäksi on mahdollista ottaa sama nimimerkki kuin jollain muulla, minkä korjaisin jos olisi enemmän aikaa. 
+Sivustoa testatessa huomasin, että jos muokkaussivuilla tekee liian monta virhettä peräkkäin, päätyy "404 Page not found"-sivulle. Liittynee jotenkin siihen, että polusta häviää muokattavan drinkin/käyttäjän tunnus. Lisäksi juoman lisäyksessä on mahdollista tällä hetkellä lisätä sama juoma monta kertaa.  Myöskin rekisteröityessä käyttäjäksi on mahdollista ottaa sama nimimerkki kuin jollain muulla. Korjaisin nämä jos olisi enemmän aikaa. 
 
 En tehnyt sovellukselle testausta, sillä sitä ei vaadittu eikä olisi oikein ollut aikaakaan.
 
 \section{Omat kokemukset}
-Harjoitustyön alussa olin kyllä aivan pihalla. Tuntuu, että näinä viikkoina vastaan on tullut sekalaisesti asiaa, joista osa on jäänyt hieman sumeaksi mielikuvaksi. Itselläni meni monta viikkoa, ennenkuin tajusin mallien, sivunäkymien, routesin ja kontrollereiden yhteyden. Kovasti tuntui, että kooditoteutukseni oli aikalailla samaa kuin materiaalissa ja jos materiaalissa ei jotain ollut painittu (kuten miten ylläpitäjän näkymät luodaan), niin ei sitä osannut itse oikein lähteä ajattelemaan. Tuntuu myös, että vieläkin koodissa on kohtia joita en ymmärrä. Mutta samaan aikaan tämän sovelluksen tekeminen on ollut kivaa, on hienoa nähdä miten saa asioita toimimaan ja pystyy lisäämään ja poistamaan tietokannsa asioita. Ehkäpä olisi tarvinnut enemmän aikaa, jotta olisi pystynyt kunnolla sisäisstämään mitä oikein on tekemässä ja tutkimaan erilailla toteutusvaihtoehtoja.
+Harjoitustyön alussa olin kyllä aivan pihalla. Tuntuu, että näinä viikkoina vastaan on tullut sekalaisesti asiaa, joista osa on jäänyt hieman sumeaksi mielikuvaksi. Itselläni meni monta viikkoa, ennenkuin tajusin mallien, sivunäkymien, routesin ja kontrollereiden yhteyden. Kovasti tuntui, että kooditoteutukseni oli aikalailla samaa kuin materiaalissa ja jos materiaalissa ei jotain ollut painittu (kuten miten ylläpitäjän näkymät luodaan), niin ei sitä osannut itse oikein lähteä ajattelemaan. Tuntuu myös, että vieläkin koodissa on kohtia joita en ymmärrä. Mutta samaan aikaan tämän sovelluksen tekeminen on ollut kivaa, on hienoa nähdä miten saa asioita toimimaan ja pystyy lisäämään ja poistamaan tietokannasta asioita. Ehkäpä olisi tarvinnut enemmän aikaa, jotta olisi pystynyt kunnolla sisäistämään, mitä oikein on tekemässä ja tutkimaan erilaisia toteutusvaihtoehtoja (kuin ne jotka materiaalissa suoraan annettiin). 
+
+Iso kiitos pajaohjaajille, taisin valehtelematta olla aina paikalla ja kiva että jaksoitte auttaa välillä kovin tyhmissäkin ongelmissa! :)
 
 \section{Muu dokumentaatio}
 

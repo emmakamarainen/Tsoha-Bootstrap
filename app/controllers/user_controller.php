@@ -93,7 +93,7 @@ class UserController extends BaseController {
         if (count($errors) == 0) {
             $user->save();
             $_SESSION['user'] = $user->id;
-            Redirect::to('/home', array('message_green' => 'Tervetuloa' . $user->nimimerkki . '!'));
+            Redirect::to('/home', array('message_green' => 'Tervetuloa ' . $user->nimimerkki . '!'));
         } else {
             View::make('user/user_new.html', array('errors' => $errors, 'attributes' => $attributes));
         }
