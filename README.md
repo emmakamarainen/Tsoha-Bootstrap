@@ -27,6 +27,8 @@ Tavallinen käyttäjä voi hakea drinkkireseptejä kannasta ja ehdottaa uusien l
 
 Järjestelmän ylläpitäjä voi listata järjestelmän reseptejä joko kokonaan itse tai ehdotettuja hyvksymällä. Lisääminen voi tapahtua esimerkiksi syöttämällä tiedot lomakkeeseen tai lukemalla resepti (tai useita reseptejä) esimerkiksi tekstitiedostosta. Järjestelmän ylläpitäjä voi antaa myös tavallisille käyttäjille ylläpito-oikeudet (ehkä vain reseptin lisäysoikeuden?).
 
+-----
+
 Toimintoja:
 
 * Kirjautuminen
